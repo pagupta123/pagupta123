@@ -1,0 +1,147 @@
+<apex:page docType="html-5.0" standardController="redwing__Learning_Assignment__c" extensions="redwing.LearningAssignmentApproveExt" sidebar="false" showHeader="{!showSFHeader}"  standardStylesheets="false">
+
+    <apex:composition template="redwing__LMSTemplate">
+
+        <apex:define name="head">
+            <apex:outputPanel layout="none" rendered="{!assignment != null}">
+                <title>{!assignment.User__r.Name + ' - ' + assignment.Learning_Version__r.Task__r.Name}</title>
+            </apex:outputPanel>
+        </apex:define>
+
+        <apex:define name="body">
+
+            <apex:outputPanel layout="none" rendered="{!assignment != null}">
+
+                <apex:form id="aaAssignmentFormBatch">
+
+                    <apex:outputPanel layout="none" rendered="{!assignment.Learning_Version__r.Task__r.redwing__Enable_Video_Upload__c}">
+                        <apex:includeLightning />
+                    </apex:outputPanel>
+
+                    <apex:actionStatus id="status">
+                        <apex:facet name="start">
+                            <c:LMSStatus statusComponentId="{!$Component.status}"/>
+                        </apex:facet>
+                    </apex:actionStatus>
+
+                    <apex:outputPanel id="pmessages" layout="none">
+                        <apex:outputPanel layout="block" styleClass="alert alert-danger" rendered="{!hasMessages}">
+                            <script>
+                                forceHideStatus();
+                            </script>
+                            <apex:pageMessages />
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel layout="none" rendered="{!assignment.Learning_Version__r.Task__r.redwing__Enable_Video_Upload__c}">
+
+                        <div id="lmsTaskMediaComponent" class="lms-task-video-component-container"/>
+
+                        <script>
+
+                            // Handle events submitted by embedded component
+                            function handleViewerEvent(event){
+                                forceShowStatus();
+                                var viewerEventType = event.getParam("type");
+                                if(viewerEventType == "submit"){
+                                    //Handle Submit action
+                                }else{
+                                    //Handle Cancel action
+                                }
+                            }
+
+                            $Lightning.use("{!JSENCODE(videoComponentsNamespace)}:TaskMediaOutApp", function() {
+                                $Lightning.createComponent("{!JSENCODE(videoComponentsNamespace)}:TaskMediaComponent",
+                                {
+                                    "assignmentId" : "{!assignment.Id}",
+                                    "preview" : "{!assignment.Is_Test_Assignment__c}",
+                                    "userId" : "{!JSENCODE(assignment.User__c)}",
+                                    "status" : "{!JSENCODE(assignment.Progress__c)}"
+                                },
+                                "lmsTaskMediaComponent",
+                                function(cmp, status, errorMessage){
+                                    //Add the new button to the body array
+                                    if (status === "SUCCESS") {
+                                        $A.eventService.addHandler({ "event": "{!JSENCODE(lmsNamespace)}:TaskViewerEvent", "handler" : handleViewerEvent});
+                                    }else if (status === "INCOMPLETE") {
+                                        lmscore.logMessage("No response from server or client is offline.")
+                                    }else if (status === "ERROR") {
+                                        lmscore.logMessage("Error: " + errorMessage);
+                                    }
+                                });
+                            });
+
+                        </script>
+
+                    </apex:outputPanel>
+
+                    <apex:outputPanel layout="none" rendered="{!!assignment.redwing__Approved__c}">
+
+                        <apex:outputPanel layout="block" style="margin-top:15px;" rendered="{!assignment.redwing__User_Notes__c != null}">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><b>{!$Label.redwing__alms_approval_user_notes}</b></div>
+                                <div class="panel-body" style="overflow-x: auto;">
+                                    <apex:outputField value="{!assignment.redwing__User_Notes__c}"/>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+
+                        <apex:outputPanel layout="block" style="margin-top:15px;" rendered="{!latestImageAttachment != null}">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><b>{!$Label.redwing__alms_attachment}</b></div>
+                                <div class="panel-body">
+                                    <apex:outputLink value="{!URLFOR($Action.Attachment.Download,latestImageAttachment)}" target="_blank">{!$Label.redwing__alms_view_attachment}</apex:outputLink>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+
+                    <apex:outputPanel layout="block" style="margin-top:15px;" rendered="{!enableRatings && ratings != null && ratings.size > 0}">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><b>{!$Label.redwing__alms_ratings}</b></div>
+                            <div class="panel-body panel-ratings-container">
+                                <apex:repeat value="{!ratings}" var="rating">
+                                    <c:RatingBoolean rating="{!rating}" rendered="{!rating.ratingType == 'Boolean'}" />
+                                    <c:RatingPoints rating="{!rating}" rendered="{!rating.ratingType == 'Points'}" />
+                                    <c:RatingStars rating="{!rating}" rendered="{!rating.ratingType == 'Stars'}" />
+                                    <hr />
+                                </apex:repeat>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
+                        <apex:outputPanel layout="block" style="margin-top:15px;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><b>{!$Label.redwing__alms_additional_information}</b></div>
+                                <div class="panel-body" style="overflow-x: auto;">
+                                    <div class="alert alert-warning" role="alert">
+                                        <apex:pageMessage summary="{!$Label.redwing__alms_approver_notes_message}" severity="info" strength="1" />
+                                    </div>
+                                    <div class="form-group">
+                                        <apex:outputLabel value="{!$Label.redwing__alms_approver_notes_field}" for="appr_notes"/>
+                                        <apex:inputTextArea id="appr_notes" value="{!approverNotes}" rows="6" styleClass="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+
+                        <div class="alert alert-info" role="alert">{!$Label.redwing__alms_assignment_approve_message}</div>
+
+                    <apex:commandButton value="{!$Label.redwing__alms_approve}" action="{!approveAssignment}" styleClass="lmscore-success-btn large-btn" onclick="forceShowStatus();" style="width: 49%; margin-right:0px;"/>
+                        <apex:commandButton value="{!$Label.redwing__alms_reject}" action="{!rejectAssignment}" styleClass="lmscore-danger-btn large-btn" onclick="forceShowStatus();"  style="width: 49%; margin-right: 0px; float: right;"/>
+                        <apex:commandButton value="{!$Label.redwing__alms_cancel}" action="{!cancel}" styleClass="lmscore-warning-btn large-btn" onclick="forceShowStatus();" style="margin-top:15px;"/>
+
+                    </apex:outputPanel>
+                    <apex:outputPanel layout="none" rendered="{!assignment.redwing__Approved__c}">
+                        <div class="alert alert-success" role="alert">{!$Label.redwing__alms_assignment_already_approved}</div>
+                        <div class="alert alert-success" role="alert">{!$Label.redwing__alms_approved_by} : <b>{!assignment.Approved_By__r.Name}</b></div>
+                        <apex:commandButton value="{!$Label.redwing__alms_back}" action="{!cancel}" styleClass="lmscore-danger-btn large-btn" onclick="forceShowStatus();" style="margin-top:15px;"/>
+                    </apex:outputPanel>
+                </apex:form>
+
+            </apex:outputPanel>
+            <apex:includeScript value="{!URLFOR($Resource.redwing__lmscore_uilib, '/js/jquery.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.redwing__lmscore_uilib, '/js/jquery.rateit.min.js')}"/>
+        </apex:define>
+    </apex:composition>
+
+</apex:page>

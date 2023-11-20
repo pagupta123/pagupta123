@@ -1,0 +1,9 @@
+.THIS .inputFieldWidth {
+    width:75%;
+}
+
+@media(max-width:700px){
+    .THIS .responsiveHide{
+        display : none !important;
+    }
+}

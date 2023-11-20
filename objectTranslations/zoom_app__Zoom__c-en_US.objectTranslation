@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Org level to disable invitation email --></help>
+        <label><!-- Disable Invitation Email --></label>
+        <name>zoom_app__Disable_Invitation_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enable Passcode For Non-PMI Meeting --></label>
+        <name>zoom_app__Enable_Password__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enable Webinar Feature --></label>
+        <name>zoom_app__Enable_Webinar_Feature__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Zoom Meetings Schedule Id --></label>
+        <name>zoom_app__External_Zoom_Meetings__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Metrics Schedule Id --></label>
+        <name>zoom_app__Get_Zoom_Meeting_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Login Type --></label>
+        <name>zoom_app__Login_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Populate Meeting Details into Event Description --></help>
+        <label><!-- Populate Details into Event Description --></label>
+        <name>zoom_app__Populate_Details_into_Event_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Zoom API Key --></help>
+        <label><!-- Zoom API Key --></label>
+        <name>zoom_app__Zoom_API_Key__c</name>
+    </fields>
+    <fields>
+        <help><!-- Zoom Secret Key --></help>
+        <label><!-- Zoom API Secret --></label>
+        <name>zoom_app__Zoom_API_Secret__c</name>
+    </fields>
+    <fields>
+        <help><!-- Zoom Url e.g. http://zoom.us/j/ --></help>
+        <label><!-- Zoom url --></label>
+        <name>zoom_app__Zoom_url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Service Env --></label>
+        <name>zoom_app__zoom_service_env__c</name>
+    </fields>
+</CustomObjectTranslation>

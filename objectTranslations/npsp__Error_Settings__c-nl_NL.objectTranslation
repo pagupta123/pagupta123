@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Foutinstellingen --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Foutinstellingen --></value>
+    </caseValues>
+    <fields>
+        <help>Wordt gebruikt om de meest recente uitvoering van het foutenlogboek voor Asynchrone taken bij te houden</help>
+        <label><!-- Async Error Check Last Run --></label>
+        <name>npsp__Async_Error_Check_Last_Run__c</name>
+    </fields>
+    <fields>
+        <help>Als deze optie wordt geselecteerd, worden met &apos;Controle van de Toestand&apos; alleen de NPSP-configuratie-instellingen gecontroleerd op problemen. Selecteer deze optie als uw organisatie veel records heeft en de functie niet kan worden voltooid.</help>
+        <label><!-- Disable Record Data Health Checks --></label>
+        <name>npsp__DisableRecordDataHealthChecks__c</name>
+    </fields>
+    <fields>
+        <help>Indien aangevinkt, wordt het NPSP-raamwerk voor foutafhandeling uitgeschakeld.</help>
+        <label><!-- Disable Error Handling --></label>
+        <name>npsp__Disable_Error_Handling__c</name>
+    </fields>
+    <fields>
+        <help>Indien aangevinkt, zal NPSP standaard terugkerende taken niet automatisch plannen. Deze terugkerende taken berekenen totaliseringen, werken terugkerende donaties en seizoenadressen bij en voeren foutenafhandeling uit.</help>
+        <label><!-- Don&apos;t Auto Schedule Default NPSP Jobs --></label>
+        <name>npsp__Don_t_Auto_Schedule_Default_NPSP_Jobs__c</name>
+    </fields>
+    <fields>
+        <help>Vink dit aan om debug-instructies in beheerde pakketcode in te schakelen.</help>
+        <label><!-- Enable Debug --></label>
+        <name>npsp__Enable_Debug__c</name>
+    </fields>
+    <fields>
+        <help>Vink aan wanneer u wilt dat het systeem meldingen plaatst voor bepaalde soorten fouten.</help>
+        <label><!-- Error Notifications --></label>
+        <name>npsp__Error_Notifications_On__c</name>
+    </fields>
+    <fields>
+        <help>Selecteer het type gebruiker dat meldingen moet ontvangen.</help>
+        <label><!-- Error Notification Recipients --></label>
+        <name>npsp__Error_Notifications_To__c</name>
+    </fields>
+    <fields>
+        <help>Niet bijwerken. Alleen voor testen van Salesforce-org.-proef. Staat overschrijven van beperkte toegang van parameter van voorziening PilotEnabled toe in Scratch-organisaties voor proeftesten in organisaties zonder gekoppelde productlicentie in de LMO.</help>
+        <label><!-- Scratch Org Override: Pilot Enabled --></label>
+        <name>npsp__OverrideFeature_PilotEnabled__c</name>
+    </fields>
+    <fields>
+        <help>Respecteer de Duplicaatregelinstellingen die regelen of duplicaatrecords toegestaan zijn. Controleer instellingen onder Set-up en Duplicaatregels. Wanneer Actie bij Aanmaken of Actie bij Bewerken ingesteld zijn op &apos;Toestaan&apos;, worden duplicaten bewaard.</help>
+        <label><!-- Respect Duplicate Rule Settings --></label>
+        <name>npsp__Respect_Duplicate_Rule_Settings__c</name>
+    </fields>
+    <fields>
+        <help>Vink aan wanneer u fouten wilt bewaren in de database.</help>
+        <label><!-- Store Errors --></label>
+        <name>npsp__Store_Errors_On__c</name>
+    </fields>
+    
+</CustomObjectTranslation>

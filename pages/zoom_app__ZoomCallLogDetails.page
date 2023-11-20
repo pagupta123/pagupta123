@@ -1,0 +1,29 @@
+<apex:page standardController="task" extensions="zoom_app.Zoom_Call_Log_Detail" lightningStylesheets="true">
+    <apex:pageMessages />
+    <apex:pageBlock >
+        <apex:pageBlockSection id="CallLogOutputBlock" columns="2" >
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Caller_Phone_Number__c}"/>
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Callee_Phone_Number__c}"/>
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Caller_Extension_Number__c}"/>
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Callee_Extension_Number__c}"/>
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Call_ID__c}"/>
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Calllog_Status__c}"/>
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Call_Duration__c}"/>
+            <apex:outputField value="{!ZoomcallLog.zoom_app__Signal_Status__c}"/>   
+       
+            <apex:outputText label="Ring Start Time" value="{0, date,MM/dd/yyyy HH:mm:ss}"> 
+                <apex:param value="{!ZoomcallLog.zoom_app__Ring_Start_Time__c}" />
+            </apex:outputText>
+            <apex:outputText label="Answer Start Time" value="{0, date,MM/dd/yyyy HH:mm:ss}"> 
+                <apex:param value="{!ZoomcallLog.zoom_app__Answer_Start_Time__c}" />
+            </apex:outputText>
+            <apex:outputText label="Call End Time" value="{0, date,MM/dd/yyyy HH:mm:ss}"> 
+                <apex:param value="{!ZoomcallLog.zoom_app__Call_End_Time__c}" />
+            </apex:outputText>
+            <!-- <apex:outputField value="{!ZoomcallLog.Disposition__C}"></apex:outputField> -->
+            <apex:repeat var="item" value="{!customizedCallLogFields}">
+                <apex:outputText label="{!item.fieldLabel}" value="{!item.fieldValue}"></apex:outputText>     
+            </apex:repeat> 
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

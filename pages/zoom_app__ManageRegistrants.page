@@ -1,0 +1,252 @@
+<apex:page standardController="zoom_app__Zoom_Webinar__c" lightningStylesheets="true" showHeader="true" sidebar="true" extensions="zoom_app.ManageRegistrantsController" id="page">
+    <style>
+    .rich-tab-header {
+        font-weight: bold;
+        padding: 5px 10px;
+    }
+    </style>
+    <apex:slds />
+    <apex:form id="form">
+            <!-- <apex:pageBlock title="" mode="edit"> -->
+            <apex:pageMessages />
+            <!--
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Approve Registrants" action="{!approveRegistrants}"/>
+                <apex:commandButton value="Cancel Registrants" action="{!cancelRegistrants}"/>
+                <apex:commandButton value="Back" action="{!cancel}"/>
+            </apex:pageBlockButtons>  -->
+
+                <apex:actionFunction name="checkAllPending" action="{!checkAllPending}" reRender="tablePending" status="status1" />
+                <apex:actionFunction name="checkAllApproved" action="{!checkAllApproved}" reRender="tableApproved" status="status2" />
+                <apex:actionFunction name="checkAllBlocked" action="{!checkAllBlocked}" reRender="tableDenied" status="status3" />
+                <apex:actionFunction name="checkAllInvited" action="{!checkAllInvited}" reRender="tableInvited" status="status4" />
+
+                <apex:tabPanel switchType="client" selectedTab="invited" id="theTabPanel" >
+
+                    <apex:tab label="Invited" name="invited" id="tabOne">
+                        <apex:pageBlock id="penalInvited"> 
+                            <apex:pageBlockButtons location="top" rendered="{!displayButtonInInvitePanel}">
+                                <apex:commandButton value="Approve Registrants" action="{!approveRegistrants}"/>
+                                <apex:commandButton value="Cancel Registrants" action="{!cancelRegistrants}"/>
+                            </apex:pageBlockButtons>
+                            <apex:pageBlockTable value="{!registrantsInvited}" var="wrapperReg" id="tableInvited" >
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:inputCheckbox value="{!invitedHeaderCheck}" id="hdcheck4" onChange="checkAllInvited();" />
+                                    </apex:facet>
+                                    <apex:inputCheckbox value="{!wrapperReg.selected}" />
+                                </apex:column>
+                                <apex:column > 
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.name.label}
+                                    </apex:facet>
+                                    <apex:outputLink value="/{!wrapperReg.registrant.id}"  target="_top">{!wrapperReg.registrant.name}</apex:outputLink> 
+                                </apex:column> 
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Email__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Email__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__First_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__First_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Last_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Last_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Status__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Status__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.CreatedDate}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.CreatedDate.label}
+                                    </apex:facet>
+                                </apex:column>
+
+                                <apex:facet name="footer">Showing Page # {!Page_number_invited} of {!Total_pages_invited}, total Records:{! total_size_invited} </apex:facet>
+                            </apex:pageBlockTable> 
+                            <!-- pagination button-->
+                            <apex:pageBlockButtons location="bottom" id="buttonsInvited">
+                                <apex:commandButton value="<<" action="{!beginningOfInvited}" disabled="{!DisablePreviousOfInvited}" reRender="penalInvited"/>
+                                <apex:commandButton value="<" action="{!previousOfInvited}"   disabled="{!DisablePreviousOfInvited}" reRender="penalInvited"/>
+                                <apex:commandButton value=">" action="{!nextOfInvited}"       disabled="{!DisableNextOfInvited}"       reRender="penalInvited"/>
+                                <apex:commandButton value=">>" action="{!endOfInvited}"       disabled="{!DisableNextOfInvited}"     reRender="penalInvited"/>
+                            </apex:pageBlockButtons>
+                        </apex:pageBlock>
+                    </apex:tab>
+
+                    <apex:tab label="Pending for Approval" name="pendingForApproval" id="tabTwo" rendered="{! showPendingPanel}">
+                        <apex:pageBlock id="penalPending"> 
+                            <apex:pageBlockButtons location="top">
+                                <apex:commandButton value="Approve Registrants" action="{!approveRegistrants}"/>
+                                <apex:commandButton value="Deny Registrants" action="{!cancelRegistrants}"/>
+                            </apex:pageBlockButtons>
+                            <apex:pageBlockTable value="{!registrantsPending}" var="wrapperReg" id="tablePending" >
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:inputCheckbox value="{!pendingHeaderCheck}" id="hdcheck1" onChange="checkAllPending();" />
+                                    </apex:facet>
+                                    <apex:inputCheckbox value="{!wrapperReg.selected}" />
+                                </apex:column>
+                                <apex:column > 
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.name.label}
+                                    </apex:facet>
+                                    <apex:outputLink value="/{!wrapperReg.registrant.id}"  target="_top">{!wrapperReg.registrant.name}</apex:outputLink> 
+                                </apex:column> 
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Email__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Email__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__First_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__First_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Last_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Last_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Status__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Status__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.CreatedDate}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.CreatedDate.label}
+                                    </apex:facet>
+                                </apex:column>
+
+                                <apex:facet name="footer">Showing Page # {!Page_number_pending} of {!Total_pages_pending}, total Records:{! total_size_pending} </apex:facet>
+                            </apex:pageBlockTable>
+                                                        <!-- pagination button-->
+                            <apex:pageBlockButtons location="bottom" id="buttonsInvited">
+                                <apex:commandButton value="<<" action="{!beginningOfPending}" disabled="{!DisablePreviousOfPending}" reRender="penalPending"/>
+                                <apex:commandButton value="<" action="{!previousOfPending}"   disabled="{!DisablePreviousOfPending}" reRender="penalPending"/>
+                                <apex:commandButton value=">" action="{!nextOfPending}"       disabled="{!DisableNextOfPending}"       reRender="penalPending"/>
+                                <apex:commandButton value=">>" action="{!endOfPending}"       disabled="{!DisableNextOfPending}"     reRender="penalPending"/>
+                            </apex:pageBlockButtons>
+                        </apex:pageBlock>
+                    </apex:tab>
+                    <apex:tab label="Approved" name="approved" id="tabThree" rendered="{! showApprovedPanel}">
+                        <apex:pageBlock id="penalApproved"> 
+                            <apex:pageBlockButtons location="top">
+                                <apex:commandButton value="Cancel Registrants" action="{!cancelRegistrants}"/>
+                            </apex:pageBlockButtons>
+                            <apex:pageBlockTable value="{!registrantsApproved}" var="wrapperReg" id="tableApproved" >
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:inputCheckbox value="{!approvedHeaderCheck}" id="hdcheck2" onChange="checkAllApproved();" />
+                                    </apex:facet>
+                                    <apex:inputCheckbox value="{!wrapperReg.selected}" />
+                                </apex:column>
+                                <apex:column > 
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.name.label}
+                                    </apex:facet>
+                                    <apex:outputLink value="/{!wrapperReg.registrant.id}"  target="_top">{!wrapperReg.registrant.name}</apex:outputLink> 
+                                </apex:column> 
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Email__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Email__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__First_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__First_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Last_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Last_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Status__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Status__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.CreatedDate}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.CreatedDate.label}
+                                    </apex:facet>
+                                </apex:column>
+                                
+                                <apex:facet name="footer">Showing Page # {!Page_number_approved} of {!Total_pages_approved}, total Records:{! total_size_approved} </apex:facet>
+                            </apex:pageBlockTable> 
+                            <!-- pagination button-->
+                            <apex:pageBlockButtons location="bottom" id="buttonsApproved">
+                                <apex:commandButton value="<<" action="{!beginningOfA}" disabled="{!DisablePreviousOfApproved}" reRender="penalApproved"/>
+                                <apex:commandButton value="<" action="{!previousOfApproved}"   disabled="{!DisablePreviousOfApproved}" reRender="penalApproved"/>
+                                <apex:commandButton value=">" action="{!nextOfApproved}"       disabled="{!DisableNextOfApproved}"     reRender="penalApproved"/>
+                                <apex:commandButton value=">>" action="{!endOfApproved}"       disabled="{!DisableNextOfApproved}"     reRender="penalApproved"/>
+                            </apex:pageBlockButtons>
+                        </apex:pageBlock>
+                    </apex:tab>
+                    <apex:tab label="Blocked" name="blocked" id="tabFour" rendered="{! showBlockedPanel}">
+                        <apex:pageBlock id="penalBlocked"> 
+                            <apex:pageBlockButtons location="top">
+                                <apex:commandButton value="Approve Registrants" action="{!approveRegistrants}"/>
+                            </apex:pageBlockButtons>
+                            <apex:pageBlockTable value="{!registrantsBlocked}" var="wrapperReg" id="tableDenied">
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:inputCheckbox value="{!blockedHeaderCheck}" id="hdcheck3" onChange="checkAllBlocked();" />
+                                    </apex:facet>
+                                    <apex:inputCheckbox value="{!wrapperReg.selected}" />
+                                </apex:column>
+                                <apex:column > 
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.name.label}
+                                    </apex:facet>
+                                    <apex:outputLink value="/{!wrapperReg.registrant.id}"  target="_top">{!wrapperReg.registrant.name}</apex:outputLink> 
+                                </apex:column> 
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Email__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Email__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__First_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__First_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Last_Name__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Last_Name__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.zoom_app__Status__c}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.zoom_app__Status__c.label}
+                                    </apex:facet>
+                                </apex:column>
+                                <apex:column value="{!wrapperReg.registrant.CreatedDate}">
+                                    <apex:facet name="header">
+                                        {!$ObjectType.zoom_app__Zoom_Webinar_Registrant__c.Fields.CreatedDate.label}
+                                    </apex:facet>
+                                </apex:column>
+
+                                <apex:facet name="footer">Showing Page # {!Page_number_blocked} of {!Total_pages_blocked}, total Records:{! total_size_blocked} </apex:facet>
+                            </apex:pageBlockTable>
+                            <!-- pagination button-->
+                            <apex:pageBlockButtons location="bottom" id="buttonsBlocked">
+                                <apex:commandButton value="<<" action="{!beginningOfBlocked}" disabled="{!DisablePreviousOfBlocked}" reRender="penalBlocked"/>
+                                <apex:commandButton value="<" action="{!previousOfBlocked}"   disabled="{!DisablePreviousOfBlocked}" reRender="penalBlocked"/>
+                                <apex:commandButton value=">" action="{!nextOfBlocked}"       disabled="{!DisableNextOfBlocked}"       reRender="penalBlocked"/>
+                                <apex:commandButton value=">>" action="{!endOfBlocked}"       disabled="{!DisableNextOfBlocked}"     reRender="penalBlocked"/>
+                            </apex:pageBlockButtons>
+                        </apex:pageBlock>
+                    </apex:tab>
+                </apex:tabPanel>
+        <!-- </apex:pageBlock> -->
+    </apex:form>
+</apex:page>

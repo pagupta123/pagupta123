@@ -1,0 +1,9 @@
+.THIS .inputFieldWidth {
+    width:75%;
+}
+.THIS .popoverWidth {
+    max-width: 10rem;
+}
+.THIS .lineItemHeaderFont {
+    font-weight: bold;
+}

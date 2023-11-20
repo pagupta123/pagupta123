@@ -1,0 +1,42 @@
+<apex:page showHeader="true" sidebar="true" standardController="zoom_app__Zoom_Webinar__c" extensions="zoom_app.OverrideWebinarNewButtonCtrl">
+	<apex:form >
+		<apex:pageMessages />
+		<apex:pageBlock title="New Zoom Webinar">
+		<apex:pageBlockbuttons >
+		<apex:commandButton value="Save" action="{!save}"/>
+		<apex:commandButton value="Cancel" action="{!cancel}"/>
+		</apex:pageBlockbuttons>
+		<apex:pageBlockSection title="Zoom Webinar Edit" columns="2" collapsible="false">
+			<apex:inputField value="{!zoomWebinar.zoom_app__Topic__c}"/>
+			<apex:outputField value="{!zoomWebinar.OwnerId}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Setting_Approval_Type__c}" required="true"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Start_Time__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Agenda__c}" style="width:280px;"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Duration__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Status__c}"/>
+		</apex:pageBlockSection>
+		<apex:pageBlockSection title="Zoom Webinar Information" columns="2" collapsible="false">
+			<apex:inputField value="{!zoomWebinar.zoom_app__Join_Url__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Register_Url__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Actual_Start_Time__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Actual_End_Time__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Number_of_Participants__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Creation_Status__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__UUId__c}"/>
+		</apex:pageBlockSection>
+		<apex:pageBlockSection title="Settings" columns="2" collapsible="false">
+			<apex:inputField value="{!zoomWebinar.zoom_app__Password__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Setting_Practice_Session__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Setting_Host_Video_On__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Setting_Allow_Multiple_Devices__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Setting_Panelists_Video_On__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Setting_Close_Registration__c}"/>
+		</apex:pageBlockSection>
+		<apex:pageBlockSection title="Advance Settings" columns="2" collapsible="false">
+			<apex:inputField value="{!zoomWebinar.zoom_app__Create_Campaign_For_Each_Webinar__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Create_New_Lead__c}"/>
+			<apex:inputField value="{!zoomWebinar.zoom_app__Add_Registrants_As_Campaign_Members__c}"/>
+		</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

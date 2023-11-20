@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- The actual end time of this Webinar --></help>
+        <label><!-- Actual End Time --></label>
+        <name>zoom_app__Actual_End_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- The actual start time of this Webinar --></help>
+        <label><!-- Actual Start Time --></label>
+        <name>zoom_app__Actual_Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Add Registrants As Campaign Members --></label>
+        <name>zoom_app__Add_Registrants_As_Campaign_Members__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agenda --></label>
+        <name>zoom_app__Agenda__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only &apos;Marketing User&apos; can create Campaign, please check it on your user profile --></help>
+        <label><!-- Create Campaign --></label>
+        <name>zoom_app__Create_Campaign_For_Each_Webinar__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create New Lead --></label>
+        <name>zoom_app__Create_New_Lead__c</name>
+    </fields>
+    <fields>
+        <label><!-- Creation Status --></label>
+        <name>zoom_app__Creation_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration in Minutes --></label>
+        <name>zoom_app__Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>zoom_app__End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Google Calendar Event Id --></label>
+        <name>zoom_app__Google_Calendar_Event_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Join Url --></label>
+        <name>zoom_app__Join_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual Number of Participants --></label>
+        <name>zoom_app__Number_of_Participants__c</name>
+    </fields>
+    <fields>
+        <help><!-- it will be encrypted after the record saved --></help>
+        <label><!-- Passcode --></label>
+        <name>zoom_app__Password__c</name>
+    </fields>
+    <fields>
+        <label><!-- Register Url --></label>
+        <name>zoom_app__Register_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Allow Multiple Devices --></label>
+        <name>zoom_app__Setting_Allow_Multiple_Devices__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Type --></label>
+        <name>zoom_app__Setting_Approval_Type__c</name>
+        <picklistValues>
+            <masterLabel>Automatically Approval</masterLabel>
+            <translation><!-- Automatically Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manually Approval</masterLabel>
+            <translation><!-- Manually Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Registration Required</masterLabel>
+            <translation><!-- No Registration Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Close Registration After Event Date --></label>
+        <name>zoom_app__Setting_Close_Registration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Host Video On --></label>
+        <name>zoom_app__Setting_Host_Video_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Panelists Video On --></label>
+        <name>zoom_app__Setting_Panelists_Video_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Practice Session --></label>
+        <name>zoom_app__Setting_Practice_Session__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>zoom_app__Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Url --></label>
+        <name>zoom_app__Start_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>zoom_app__Status__c</name>
+        <picklistValues>
+            <masterLabel>End</masterLabel>
+            <translation><!-- End --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planed</masterLabel>
+            <translation><!-- Planed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Topic --></label>
+        <name>zoom_app__Topic__c</name>
+    </fields>
+    <fields>
+        <label><!-- UUId --></label>
+        <name>zoom_app__UUId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Webinar Id --></label>
+        <name>zoom_app__Webinar_Id__c</name>
+    </fields>
+    <webLinks>
+        <label><!-- Edit_Webinar_Passcode --></label>
+        <name>zoom_app__Edit_Webinar_Passcode</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Start_Webinar --></label>
+        <name>zoom_app__Start_Webinar</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sync_Webinar_From_Zoom_us --></label>
+        <name>zoom_app__Sync_Webinar_From_Zoom_us</name>
+    </webLinks>
+</CustomObjectTranslation>

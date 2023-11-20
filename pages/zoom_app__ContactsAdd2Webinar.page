@@ -1,0 +1,121 @@
+<apex:page standardController="Contact" lightningStylesheets="true" recordSetVar="contacts" extensions="zoom_app.AddList2WebinarController" showHeader="true" sidebar="true">
+    <script>
+
+        function onRadioSeleted(approveType) {
+            
+            if(approveType == 'No Registration Required') {
+                $('#registerTop').hide();
+                $('#registerBottom').hide();
+                // $('#approveTop').hide();
+                // $('#approveBottom').hide();
+            }
+            if(approveType == 'Automatically Approval') {
+                $('#registerTop').show();
+                $('#registerBottom').show();
+                // $('#approveTop').hide();
+                // $('#approveBottom').hide();
+            }
+            if(approveType == 'Manually Approval') {
+                $('#registerTop').show();
+                $('#registerBottom').show();
+                // $('#approveTop').show();
+                // $('#approveBottom').show();
+            }
+        } 
+    </script>
+
+    <apex:composition template="zoom_app__zoomheader">
+        <apex:define name="body">
+            <apex:form id="mainForm" style="border:20px double #fff;" onkeydown="if(event.keyCode==13){return false;}" >
+            
+            <apex:pageBlock >
+                <apex:pageBlock >
+                    <table>
+                        
+                        <tbody>
+                            <tr>
+                                <td style="font-weight:bold; ">Invite Button:</td>
+                                <td style="padding-left: 20px">Invite a Contact/Lead for the selected Webinars. An invitation containing the registration URL will be emailed to the Contact/Lead.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold; ">Register Button:</td>
+                                <td style="padding-left: 20px">Register a Contact/Lead for the selected Webinars (pending approval for Webinars requiring manual approval).</td>
+                            </tr>
+                            <!-- <tr>
+                                <td style="font-weight:bold; ">Register &amp; Approve Button:</td>
+                                <td style="padding-left: 20px">Register and approve a Contact/Lead for the selected Webinars.</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </apex:pageBlock>
+
+
+
+                <apex:pageBlock title="Select a Webinar">
+                    <apex:pageMessages />
+                <apex:pageBlockSection title="Search a Webinar" columns="2">
+                    <apex:pageBlockSectionItem >
+                        <apex:inputText id="theTextInput" value="{!searchKey}"/>
+                        <apex:commandButton id="searchWebinar" value="Search" action="{!searchWebinar}" styleClass="padding-left:10%;"/>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockButtons location="top">  
+                    <span id="inviteTop">
+                        <apex:commandButton id="inviteTop" value="Invite" action="{!inviteToWebinar}" />
+                    </span>
+                    <span id="registerTop">
+                        <apex:commandButton value="Register" action="{!registerToWebinar}" />
+                    </span>
+                    <!-- <span id="approveTop">
+                        <apex:commandButton value="Register & Approve" action="{!registerAndApproveToWebinar}" />
+                    </span> -->
+                </apex:pageBlockButtons>
+                <apex:pageBlockTable value="{!webinarList}" var="webinar" >
+                    <apex:column >                            
+                        <input type="radio" id="{!webinar.Id}" name="rdo" value="{!webinar.Id}" onclick="return onRadioSeleted('{!webinar.setting_approval_type__c }')" style ="margin-left:5px"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Webinar Name</apex:facet>
+                        <apex:outputField value="{!webinar.name}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Webinar Topic</apex:facet>
+                        <apex:outputField value="{!webinar.zoom_app__Topic__c}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Webinar ID</apex:facet>
+                        <apex:outputField value="{!webinar.zoom_app__Webinar_Id__c}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Webinar Start Time</apex:facet>
+                        <apex:outputField value="{!webinar.zoom_app__Start_Time__c}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Webinar Approval Type</apex:facet>
+                        <apex:outputField value="{!webinar.zoom_app__Setting_Approval_Type__c}"/>
+                    </apex:column>
+                </apex:pageBlockTable>  
+
+
+                <apex:pageBlockButtons location="bottom" rendered="{! isClassic}">
+                    <span id="inviteBottom">
+                        <apex:commandButton value="Invite" action="{!inviteToWebinar}" />
+                    </span>
+                    <span id="registerBottom">
+                        <apex:commandButton value="Register" action="{!registerToWebinar}" />
+                    </span>
+                    <!-- <span id="approveBottom">
+                        <apex:commandButton value="Register & Approve" action="{!registerAndApproveToWebinar}" />
+                    </span> -->
+                </apex:pageBlockButtons>
+
+
+                </apex:pageBlock>
+
+            </apex:pageBlock>
+            
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+        
+</apex:page>

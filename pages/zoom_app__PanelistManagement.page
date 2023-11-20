@@ -1,0 +1,62 @@
+<apex:page showHeader="true" sidebar="true" lightningStylesheets="true" standardController="zoom_app__Zoom_Webinar__c" extensions="zoom_app.PanelistManagementCtrl" >
+    <base target="_parent" />
+    <apex:slds />
+    <apex:form id="mainForm">
+        
+        <apex:pageBlock >
+            <div style="width:1400px;">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="New Panelist" action="{!newPanelist}" reRender="mainForm" immediate="true" />        
+            </apex:pageBlockButtons>
+            <apex:pageMessages /> <br/>
+            <apex:pageBlockTable style="width:100%" value="{!panelistProxys}" var="panelistProxy">
+                <apex:column style="width:280px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;display:-webkit-box; ">
+                    <apex:facet name="header">Action</apex:facet>
+                    <apex:commandButton value="Save" action="{!savePanelist}" rendered="{!!panelistProxy.isEditable}" reRender="mainForm">
+                        <apex:param name="eventId" value="{!panelistProxy.proxyId}" assignTo="{!proxyId}"/>
+                    </apex:commandButton>
+
+                    <apex:commandButton value="Cancel" action="{!cancelPanelist}" rendered="{!!panelistProxy.isEditable}" reRender="mainForm" immediate="true">
+                        <apex:param name="eventId" value="{!panelistProxy.proxyId}" assignTo="{!proxyId}"/>
+                    </apex:commandButton>
+
+                    <apex:commandButton value="Edit" action="{!editPanelist}" rendered="{!panelistProxy.isEditable}" reRender="mainForm" immediate="true">
+                        <apex:param name="eventId" value="{!panelistProxy.proxyId}" assignTo="{!proxyId}"/>
+                    </apex:commandButton>
+                    <apex:commandButton value="Delete" action="{!deletePanelist}" rendered="{!panelistProxy.isEditable}" reRender="mainForm" immediate="true" onclick="if(!confirm('Are you sure?')){return false;}">
+                        <apex:param name="eventId" value="{!panelistProxy.proxyId}" assignTo="{!proxyId}"/>
+                    </apex:commandButton>
+                </apex:column>
+
+                <apex:column style="width:200px">
+                    <apex:facet name="header">Panelist Name</apex:facet>
+                    <apex:outputLink value="/{!panelistProxy.zoomPanelist.ID}">{!panelistProxy.zoomPanelist.Name}</apex:outputLink> 
+                </apex:column>
+
+                <apex:column style="width:200px">
+                    <apex:facet name="header">First Name</apex:facet>
+                    <apex:outputField value="{!panelistProxy.zoomPanelist.zoom_app__First_Name__c}" rendered="{!panelistProxy.isEditable}"/>
+                    <apex:inputField value="{!panelistProxy.zoomPanelist.zoom_app__First_Name__c}" rendered="{!!panelistProxy.isEditable}" required="true"/>
+                </apex:column>
+                <apex:column style="width:200px">
+                    <apex:facet name="header">Last Name</apex:facet>
+                    <apex:outputField value="{!panelistProxy.zoomPanelist.zoom_app__Last_Name__c}" rendered="{!panelistProxy.isEditable}"/>
+                    <apex:inputField value="{!panelistProxy.zoomPanelist.zoom_app__Last_Name__c}" rendered="{!!panelistProxy.isEditable}" required="true"/>
+                </apex:column>
+                <apex:column style="width:200px">
+                    <apex:facet name="header">Email</apex:facet>
+                    <apex:outputField value="{!panelistProxy.zoomPanelist.zoom_app__Panelist_Email__c}" rendered="{!panelistProxy.isEditable}"/>
+                    <apex:inputField value="{!panelistProxy.zoomPanelist.zoom_app__Panelist_Email__c}" rendered="{!!panelistProxy.isEditable}" required="true"/>
+                </apex:column>
+
+                <apex:column style="width:450px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;display:-webkit-box; ">
+                    <apex:facet name="header">Join Url</apex:facet>
+                    <apex:outputField value="{!panelistProxy.zoomPanelist.zoom_app__Join_Url__c}" />
+                </apex:column>
+            </apex:pageBlockTable>
+        </div>
+        </apex:pageBlock>
+
+   
+    </apex:form>
+</apex:page>

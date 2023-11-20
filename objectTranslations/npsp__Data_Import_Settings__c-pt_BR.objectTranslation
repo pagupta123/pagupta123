@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Configuração de importação de dados --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Configurações de importação de dados --></value>
+    </caseValues>
+    <fields>
+        <help>Um campo de ID exclusivo opcional para usar na correspondência da Conta da organização</help>
+        <label><!-- Account Custom Unique ID --></label>
+        <name>npsp__Account_Custom_Unique_ID__c</name>
+    </fields>
+    <fields>
+        <help>Especifica qual regra seguir ao tentar corresponder as Contas nos registros de importação de dados com as Contas existentes.</help>
+        <label><!-- Account Matching Rule --></label>
+        <name>npsp__Account_Matching_Rule__c</name>
+    </fields>
+    <fields>
+        <help>O número de registros de Importação de dados do NPSP para processar em cada lote.</help>
+        <label><!-- Batch Process Size --></label>
+        <name>npsp__Batch_Size__c</name>
+    </fields>
+    <fields>
+        <help>JSON para o resultado de implantação de CMT
+{ &quot;jobId&quot;: &quot;repsonse&quot; }</help>
+        <label><!-- CMT API Deployment Result --></label>
+        <name>npsp__CMT_API_Status__c</name>
+    </fields>
+    <fields>
+        <help>ID da implantação de metadados personalizados</help>
+        <label><!-- CMT Deployment ID --></label>
+        <name>npsp__CMT_Deployment_ID__c</name>
+    </fields>
+    <fields>
+        <help>Um campo de ID exclusivo opcional para usar na correspondência do Contato</help>
+        <label><!-- Contact Custom Unique ID --></label>
+        <name>npsp__Contact_Custom_Unique_ID__c</name>
+    </fields>
+    <fields>
+        <help>Especifica qual regra seguir ao tentar corresponder Contatos nos registros de importação de dados com os Contatos existentes.</help>
+        <label><!-- Contact Matching Rule --></label>
+        <name>npsp__Contact_Matching_Rule__c</name>
+    </fields>
+    <fields>
+        <help>O nome da API de metadados personalizados do Conjunto de mapeamento de campos da importação de dados que deve ser usado por padrão.</help>
+        <label><!-- Default Data Import Field Mapping Set --></label>
+        <name>npsp__Default_Data_Import_Field_Mapping_Set__c</name>
+    </fields>
+    <fields>
+        <help>Digite o n.º de dias a contar da Data de doação a serem levados em conta na procura de uma Oport. ou um Pgmt. corresp. O Imp. de Dados escolherá a Oport. ou o Pgmt. corresp. cuja data se enquadre no número de dias e esteja mais próxima da Data de doação.</help>
+        <label><!-- Number of Days from Donation Date --></label>
+        <name>npsp__Donation_Date_Range__c</name>
+    </fields>
+    <fields>
+        <help>Define como o Importador de dados deve lidar com doações correspondentes. Você precisa escolher um valor.</help>
+        <label><!-- Donation Matching Behavior --></label>
+        <name>npsp__Donation_Matching_Behavior__c</name>
+    </fields>
+    <fields>
+        <help>O nome do desenvolvedor de uma classe do Apex que implementa a interface BDI_IMatching para Doações. Deixe em branco para que o NPSP faça a correspondência.</help>
+        <label><!-- Donation Matching Implementing Class --></label>
+        <name>npsp__Donation_Matching_Implementing_Class__c</name>
+    </fields>
+    <fields>
+        <help>Especifica quais campos devem ser combinados ao tentar corresponder doações em registros da Importação de dados com oportunidades e pagamentos existentes. Pressione Control ou Command+clique para selecionar mais de um campo.</help>
+        <label><!-- Donation Matching Rule --></label>
+        <name>npsp__Donation_Matching_Rule__c</name>
+    </fields>
+    <fields>
+        <help>Define a forma como os campos no registro da Importação de dados do NPSP são mapeados para outros objetos no Salesforce. As opções são Mapeamento de campo de importação de dados ou Texto de ajuda.</help>
+        <label><!-- Field Mapping Method --></label>
+        <name>npsp__Field_Mapping_Method__c</name>
+    </fields>
+    <fields>
+        <help>O nome do desenvolvedor de uma classe do Apex que implementa a interface BDI_IPostProcess para registros de importação de dados do NPSP.</help>
+        <label><!-- Post Process Implementing Class --></label>
+        <name>npsp__Post_Process_Implementing_Class__c</name>
+    </fields>
+    <fields>
+        <help>Quando marcado, o NPSP calcula as estatísticas dos doadores quando as doações são processadas. Se não marcado, as estatísticas de doadores serão calculadas durante o trab. agendado noturno padrão. Esta caixa de seleção pode retardar o process. do lote.</help>
+        <label><!-- Calculate Donation Rollups with Batch --></label>
+        <name>npsp__Run_Opportunity_Rollups_while_Processing__c</name>
+    </fields>
+    
+</CustomObjectTranslation>

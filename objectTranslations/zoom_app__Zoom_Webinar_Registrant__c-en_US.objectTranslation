@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Address --></label>
+        <name>zoom_app__Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>zoom_app__City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>zoom_app__Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>zoom_app__Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>zoom_app__Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Key --></label>
+        <name>zoom_app__External_key__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>zoom_app__First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry --></label>
+        <name>zoom_app__Industry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Title --></label>
+        <name>zoom_app__Job_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Join Url --></label>
+        <name>zoom_app__Join_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Name --></label>
+        <name>zoom_app__Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Employees --></label>
+        <name>zoom_app__Number_of_Employees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org --></label>
+        <name>zoom_app__Org__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organization --></label>
+        <name>zoom_app__Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>zoom_app__Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>zoom_app__State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>zoom_app__Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denied</masterLabel>
+            <translation><!-- Denied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invited</masterLabel>
+            <translation><!-- Invited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending for Approval</masterLabel>
+            <translation><!-- Pending for Approval --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Zip --></label>
+        <name>zoom_app__Zip__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Webinar --></label>
+        <name>zoom_app__Zoom_Webinar__c</name>
+        <relationshipLabel><!-- Zoom Webinar Registrants --></relationshipLabel>
+    </fields>
+</CustomObjectTranslation>

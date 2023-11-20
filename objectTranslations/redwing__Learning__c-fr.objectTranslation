@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Apprentissage</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Apprentissages</value>
+    </caseValues>
+    <fields>
+        <help>Code de couleur HEX de la couleur de fond de l&apos;en-tête (par ex. #dcdcdc, davantage d&apos;exemples sur : http://www.color-hex.com/)</help>
+        <label><!-- Background Color --></label>
+        <name>redwing__Background_Color__c</name>
+    </fields>
+    <fields>
+        <help>URL de l&apos;image affichée dans l&apos;en-tête des détails de l&apos;apprentissage</help>
+        <label><!-- Background Image URL --></label>
+        <name>redwing__Background_Image_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Published Version --></label>
+        <name>redwing__Current_Published_Version_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Published Version --></label>
+        <name>redwing__Current_Published_Version__c</name>
+        <relationshipLabel><!-- Learning Objects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Custom Preview URL --></label>
+        <name>redwing__Custom_Preview_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Language Learning Object --></label>
+        <name>redwing__Default_Language_Learning_Object__c</name>
+        <relationshipLabel><!-- Learning Objects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>redwing__Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration (minutes) --></label>
+        <name>redwing__Duration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Duration (hours) --></label>
+        <name>redwing__Duration_hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Published --></label>
+        <name>redwing__Is_Published_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language --></label>
+        <name>redwing__Language__c</name>
+    </fields>
+    <fields>
+        <label><!-- Published --></label>
+        <name>redwing__Published__c</name>
+    </fields>
+    <fields>
+        <help>Activez cette case si vous prévoyez d&apos;ajouter cet apprentissage à plusieurs plans d&apos;apprentissage et que vous souhaitez synchroniser la progression des plans</help>
+        <label><!-- Sync progress across assignments --></label>
+        <name>redwing__Sync_progress__c</name>
+    </fields>
+    <fields>
+        <help>Code de couleur HEX de la couleur du texte de l&apos;en-tête (par ex. #333333, davantage d&apos;exemples sur : http://www.color-hex.com/)</help>
+        <label><!-- Text Color --></label>
+        <name>redwing__Text_Color__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Nom d&apos;apprentissage</nameFieldLabel>
+    <recordTypes>
+        <description><!-- Check-In Learning Activity --></description>
+        <label><!-- Check-In --></label>
+        <name>redwing__CheckIn</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Overview of the ILT Class learning object and its objective --></description>
+        <label><!-- ILT Class --></label>
+        <name>redwing__ILT</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Overview of the ILT Event learning object and its objective --></description>
+        <label><!-- ILT Event --></label>
+        <name>redwing__ILT_Event</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Quiz Learning Activity --></description>
+        <label><!-- Quiz --></label>
+        <name>redwing__Quiz</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Resource (URL) Learning Activity --></description>
+        <label><!-- Resource --></label>
+        <name>redwing__Resource</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Rich Text Activity --></description>
+        <label><!-- Rich Text --></label>
+        <name>redwing__RichText</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Task Learning Activity --></description>
+        <label><!-- Task --></label>
+        <name>redwing__Task</name>
+    </recordTypes>
+    <sharingReasons>
+        <label><!-- LMS Approval Sharing --></label>
+        <name>redwing__LMS_Approval_Sharing</name>
+    </sharingReasons>
+    <sharingReasons>
+        <label><!-- LMS Sharing --></label>
+        <name>redwing__LMS_Sharing</name>
+    </sharingReasons>
+    <startsWith>Vowel</startsWith>
+    <webLinks>
+        <label><!-- Delete_Shared_Assignments --></label>
+        <name>redwing__Delete_Shared_Assignments</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Manage_Assignments --></label>
+        <name>redwing__Manage_Assignments</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Preview --></label>
+        <name>redwing__Preview</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Publish --></label>
+        <name>redwing__Publish</name>
+    </webLinks>
+</CustomObjectTranslation>

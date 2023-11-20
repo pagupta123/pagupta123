@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Configuração de famílias --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Configurações de famílias --></value>
+    </caseValues>
+    <fields>
+        <help>Se marcado, o sistema fornecerá nomenclatura automática para Nomes de família, Saudações informais e formais.</help>
+        <label><!-- Automatic Household Naming --></label>
+        <name>npo02__Advanced_Household_Naming__c</name>
+    </fields>
+    <fields>
+        <help>Quando marcado, o Salesforce sempre totalizará dados de doador no Contato primário da Oportunidade e o registro ou a Conta de família correspondente, mesmo que a Oportunidade não seja de um indivíduo. Se não marcado, só a organização receberá crédito.</help>
+        <label><!-- Always Rollup to Primary Contact Role --></label>
+        <name>npo02__Always_Rollup_to_Primary_Contact__c</name>
+    </fields>
+    <fields>
+        <help>Esta é uma configuração não exposta para alternar entre a versão assíncrona e a versão padrão do código de nomenclatura de família.</help>
+        <label><!-- Async Household Naming --></label>
+        <name>npo02__Async_Household_Naming__c</name>
+    </fields>
+    <fields>
+        <help>O número de registros a ser processado durante o cálculo das estatísticas do doador. O tamanho padrão é 200. Reduza para um número menor se as totalizações da oportunidade estiverem falhando devido aos limites do sistema.</help>
+        <label><!-- Rollup Batch Size --></label>
+        <name>npo02__Batch_Size__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. O comportamento do acionador agora controlado na página Configuração de acionador das Configurações do NPSP.</help>
+        <label><!-- DEPRECATED-Disable_HHAfter_trigger --></label>
+        <name>npo02__DISABLE_HouseholdAfter_trigger__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. O comportamento do acionador agora controlado na página Configuração de acionador das Configurações do NPSP.</help>
+        <label><!-- DEPRECATED-Disable_HHBefore_trigger --></label>
+        <name>npo02__DISABLE_HouseholdBefore_trigger__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. O comportamento do acionador agora controlado na página Configuração de acionador das Configurações do NPSP.</help>
+        <label><!-- DEPRECATED-Disable_Household_Opp_trigger --></label>
+        <name>npo02__DISABLE_Household_Opportunity_trigger__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. O comportamento do acionador agora controlado na página Configuração de acionador das Configurações do NPSP.</help>
+        <label><!-- DEPRECATED-Disable_Households_trigger --></label>
+        <name>npo02__DISABLE_Households_trigger__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. O comportamento do acionador agora controlado na página Configuração de acionador das Configurações do NPSP.</help>
+        <label><!-- DEPRECATED-Disable_OppRollup_trigger --></label>
+        <name>npo02__DISABLE_OpportunityRollup_trigger__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. O comportamento do acionador agora controlado na página Configuração de acionador das Configurações do NPSP.</help>
+        <label><!-- DEPRECATED-Enable_Opp_Rollup_Triggers --></label>
+        <name>npo02__Enable_Opp_Rollup_Triggers__c</name>
+    </fields>
+    <fields>
+        <help>Totaliza as oportunidades F/G para registros Contato com base nas Funções de contato de oport. atribuídas. As totalizações de crédito ind. só ocorrem em lotes noturnos, mas dá para executá-las manualm. nas configurações do Lote de totalização de doações.</help>
+        <label><!-- Enable Soft Credit Rollups --></label>
+        <name>npo02__Enable_Soft_Credit_Rollups__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. Novas versões do Pacote de Sucesso para organizações sem fins lucrativos serão instaladas automaticamente.</help>
+        <label><!-- DEPRECATED-Enable Update Check --></label>
+        <name>npo02__Enable_Update_Check__c</name>
+    </fields>
+    <fields>
+        <help>Nomes de tipos de registro de oport. para excluir das estatísticas na totalização das oportunidades de conta.</help>
+        <label><!-- Opp RecTypes Excluded for Account Rollup --></label>
+        <name>npo02__Excluded_Account_Opp_Rectypes__c</name>
+    </fields>
+    <fields>
+        <help>As oportunidades que tiverem esse valor na lista de opções Tipo não serão incluídas nas totalizações da Conta.</help>
+        <label><!-- Opp Types Excluded for Account Rollup --></label>
+        <name>npo02__Excluded_Account_Opp_Types__c</name>
+    </fields>
+    <fields>
+        <help>As oportunidades com os tipos de registros selecionados não serão incluídas nas totalizações para o Contato. Pressione Control ou Command+clique para selecionar mais de um tipo de registro.</help>
+        <label><!-- Opp RecTypes Excluded for Contact Rollup --></label>
+        <name>npo02__Excluded_Contact_Opp_Rectypes__c</name>
+    </fields>
+    <fields>
+        <help>As oportunidades que tiverem esse valor na lista de opções Tipo não serão incluídas nas totalizações do Contato.</help>
+        <label><!-- Opp Types Excluded for Contact Rollup --></label>
+        <name>npo02__Excluded_Contact_Opp_Types__c</name>
+    </fields>
+    <fields>
+        <help>O NPSP verifica automaticamente a presença de anos fiscais personalizados e desativa as configurações de AF se isso evitar erros. Essa configuração substitui a verificação de segurança de usuários que acidentalmente ativaram anos fiscais personalizados.</help>
+        <label><!-- Force Fiscal Year --></label>
+        <name>npo02__Force_Fiscal_Year__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. Novas versões do Pacote de Sucesso para organizações sem fins lucrativos serão instaladas automaticamente.</help>
+        <label><!-- DEPRECATED-Has Package Update --></label>
+        <name>npo02__Has_Package_Update__c</name>
+    </fields>
+    <fields>
+        <help>Cria automaticamente Funções de contato para membros da família do Contato primário da oportunidade.</help>
+        <label><!-- Household Contact Roles On --></label>
+        <name>npo02__Household_Contact_Roles_On__c</name>
+    </fields>
+    <fields>
+        <help>Tipos de registro de contato excluídos da criação da Família. Esta configuração é ignorada se você estiver usando o modelo de Conta de família.</help>
+        <label><!-- Household Creation Excluded Record Types --></label>
+        <name>npo02__Household_Creation_Excluded_Recordtypes__c</name>
+    </fields>
+    <fields>
+        <help>O ID de relatório do Relatório de lista de correspondência de família usado em listas de correspondência de campanhas de famílias desduplicadas. O relatório deve ser de Campanhas com contatos, em que o Status do membro não contém &apos;Duplicados&apos;</help>
+        <label><!-- Household Mailing List Report --></label>
+        <name>npo02__Household_Mailing_List_ID__c</name>
+    </fields>
+    <fields>
+        <help>A Função de contato que você deseja usar para os Membros da família.</help>
+        <label><!-- Household Member Contact Role --></label>
+        <name>npo02__Household_Member_Contact_Role__c</name>
+    </fields>
+    <fields>
+        <help>Os Tipos de registro de contato que você deseja excluir da criação automática da Função de contato de membro da família. O Salesforce excluiria esses Contatos de receber a Função de contato de membro da família quando a oportunidade fosse criada.</help>
+        <label><!-- Household OCR Excluded Record Types --></label>
+        <name>npo02__Household_OCR_Excluded_Recordtypes__c</name>
+    </fields>
+    <fields>
+        <help>Especifica quais Contatos terão objetos de família criados automaticamente para eles. Observe que isso só é usado para Contatos que usam o Modelo de conta individual ou um para um. Isso é ignorado para Contatos com o Modelo de conta de família.</help>
+        <label><!-- Household Object Rules --></label>
+        <name>npo02__Household_Rules__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. Novas versões do Pacote de Sucesso para organizações sem fins lucrativos serão instaladas automaticamente.</help>
+        <label><!-- DEPRECATED-Last Update Check --></label>
+        <name>npo02__Last_Update_Check__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. Novas versões do Pacote de Sucesso para organizações sem fins lucrativos serão instaladas automaticamente.</help>
+        <label><!-- DEPRECATED-Max Package Version --></label>
+        <name>npo02__Max_Package_Version__c</name>
+    </fields>
+    <fields>
+        <help>A duração do período de carência (em dias) após a expiração da associação (última data de término) antes que o Status passe do período de Carência para Vencido. O padrão é de 30 dias.</help>
+        <label><!-- Membership Grace Period --></label>
+        <name>npo02__Membership_Grace_Period__c</name>
+    </fields>
+    <fields>
+        <help>Nomes de tipos de registro de oportunidade, por exemplo, associação, que você deseja totalizar separadamente de outros Tipos de registro de oportunidades.</help>
+        <label><!-- Membership Record Type Names --></label>
+        <name>npo02__Membership_Record_Types__c</name>
+    </fields>
+    <fields>
+        <help>ID para o Trabalho de totalização de oportunidade atualmente agendado</help>
+        <label><!-- Opp Rollup Scheduled Job Id --></label>
+        <name>npo02__Opp_Rollup_Scheduled_Job_Id__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. Novas versões do Pacote de Sucesso para organizações sem fins lucrativos serão instaladas automaticamente.</help>
+        <label><!-- DEPRECATED-Package Update URL --></label>
+        <name>npo02__Package_Update_URL__c</name>
+    </fields>
+    <fields>
+        <help>Fornece o valor de totalizações &apos;N dias&apos;, em que &apos;N&apos; é o número de dias retroagindo a partir de hoje. Esse valor tem como padrão totalizar os últimos 365 dias.</help>
+        <label><!-- Rollup N Day Value --></label>
+        <name>npo02__Rollup_N_Day_Value__c</name>
+    </fields>
+    <fields>
+        <help>O número de trabalhos do Apex agendados ativos a se ter em mente ao agendar novos trabalhos.</help>
+        <label><!-- Schedule Job Limit --></label>
+        <name>npo02__Schedule_Job_Limit__c</name>
+    </fields>
+    <fields>
+        <help>Funções de contato de oportunidade que você deseja incluir nas totalizações de Crédito indireto. Pressione Control ou Command+clique para selecionar várias funções.</help>
+        <label><!-- Soft Credit Roles --></label>
+        <name>npo02__Soft_Credit_Roles__c</name>
+    </fields>
+    <fields>
+        <help>OBSOLETO. Novas versões do Pacote de Sucesso para organizações sem fins lucrativos serão instaladas automaticamente.</help>
+        <label><!-- DEPRECATED-Update Check Interval --></label>
+        <name>npo02__Update_Check_Interval__c</name>
+    </fields>
+    <fields>
+        <help>Marcar esta caixa fará com que os totais de totaliz. da Oport. usem ano fiscal em vez de ano civil. Para definir as infos do Ano fiscal, acesse Configuração-&gt;Perfil da empresa-&gt;Ano fiscal. NOTA: as Config. de ano fiscal personalizadas NÃO são suportadas.</help>
+        <label><!-- Use Fiscal Year for Rollups --></label>
+        <name>npo02__Use_Fiscal_Year_for_Rollups__c</name>
+    </fields>
+    <fields>
+        <help>A Função de contato que você deseja usar para doadores com correspondência. Recomendamos usar &quot;Doador com correspondência&quot;.</help>
+        <label><!-- Matched Donor Role --></label>
+        <name>npsp__Matched_Donor_Role__c</name>
+    </fields>
+    <fields>
+        <help>Número de registros por lote a serem processados ao definir o endereço sazonal como endereço para correspondência.</help>
+        <label><!-- Seasonal Address Batch Size --></label>
+        <name>npsp__Seasonal_Addresses_Batch_Size__c</name>
+    </fields>
+    <fields>
+        <help>Marque esta caixa para usar taxas de conversão com data quando o gerenciamento de moedas avançado estiver ativado nesta Organização. Se não for marcado e o ACM estiver ativado, todas as totalizações do NPSP usarão a taxa de câmbio padrão para a moeda.</help>
+        <label><!-- Use Dated Conversion Rates if available --></label>
+        <name>npsp__Use_Dated_Conversion_Rates__c</name>
+    </fields>
+    
+</CustomObjectTranslation>

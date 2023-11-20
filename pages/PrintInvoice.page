@@ -1,0 +1,34 @@
+<!--<apex:page StandardController="Order" sidebar="false" showheader="false" renderAs="pdf">
+    <apex:form >
+        <apex:commandLink value="Print" onclick="window.print();"/>
+        <apex:pageBlock title="Order Detail">
+            <apex:pageblockSection columns="2">
+                <apex:pageblockSectionItem>
+                    <apex:outputfield value="{!order.OrderNumber}" />
+                </apex:pageblockSectionItem>
+                <apex:pageblockSectionItem>
+                    <apex:outputfield value="{!order.EffectiveDate}"/>
+                </apex:pageblockSectionItem>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+         
+    </apex:form>
+</apex:page> -->
+<apex:page standardController="Order" renderAs="pdf" applyBodyTag="false">
+    <head>
+        <style> 
+            body { font-family: 'Arial Unicode MS'; }
+            .companyName { font: bold 30px; color: red; }  
+        </style>
+    </head>
+    <body>
+        <center>
+        <h1>Receipt</h1>
+     
+        <apex:panelGrid columns="1" width="100%">
+            <apex:outputText value="{!order.orderNumber}" styleClass="companyName"/>
+            <apex:outputText value="{!NOW()}"></apex:outputText>
+        </apex:panelGrid>
+        </center>
+    </body>
+</apex:page>

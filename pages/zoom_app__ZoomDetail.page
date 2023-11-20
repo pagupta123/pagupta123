@@ -1,0 +1,863 @@
+<apex:page controller="zoom_app.ZoomDetailCtrl" extensions="zoom_app.ZoomCallLogConfigController" cache="false" lightningStylesheets="true" docType="html-5.0" >
+    <apex:stylesheet value="{! $Resource.zoomcomponentscss }" />
+	<apex:stylesheet value="{!URLFOR($Resource.zoom_app__zoomcss, 'css/zoom-icon.css')}" />
+	<apex:includeScript value="{! $Resource.Vuejs }" />
+	<apex:includeScript value="{! $Resource.zoomcomponentsjs }" />
+	<apex:includeScript value="{! $Resource.ZoomDialCommon}" />
+    <html xmlns:v-bind="http://vue.org" xmlns:v-on="http://vue.org">
+    <script>
+
+        $(document).ready(function(){
+            initWebinarSettingsStatus();
+        });
+
+
+        function initWebinarSettingsStatus() {
+            // var enabled = '{!zoomObj.zoom_app__Enable_Webinar_Feature__c}';
+            // console.log(enabled);
+            // if(enabled == 'false') {
+            //     $('#showWebinarSettings').hide();
+            //     $('#editWebinarSettings').hide();
+            // }
+            var enabled = '{!$ObjectType.zoom_app__Zoom__c.createable}';
+            if(enabled =='false'){
+                $('#showWebinarSyncLink').hide();
+            }
+            var disableEmail = '{!zoomObj.zoom_app__Disable_Invitation_Email__c}';
+            if(disableEmail =='true'){
+                var ele = $('#userSettings').find("tr:last-child")[0]; 
+                if(ele){
+                    ele.style.display='none'; 
+                }
+            }else{
+               // solve style problem :user settings Unaligned
+                var ele =$('#userSettingDisplay').find("tr:last-child")[0];
+                if(ele &&ele.cells && ele.cells[2]){
+                    ele.cells[2].remove();
+                }
+            }
+
+            // init user Password settings display or not
+            var enablePasswordSettings = '{!zoomObj.zoom_app__Enable_Password__c}';
+            if(enablePasswordSettings == 'false'){
+                $('#showUserPasswordSettings').hide();
+                $('#showEditUserPasswordSettings').hide();  
+            }
+
+            //edit page init input password textarea display
+            var meetingPasswordType = '{!loginUser.zoom_app__Meeting_Password_Type__c}';
+             hidePassword(meetingPasswordType);
+
+             //init hint option display or not
+             var enableHint = '{!zoomWebinarConfig.zoom_app__Create_Campaign_for_each_Webinar__c}';
+             if(enableHint == 'false'){
+                $('#hintOption').hide();
+             }
+        }
+
+        function enableWebinarSettings(isChecked) {
+            if(isChecked) {
+                $('#editWebinarSettings').show();
+            } else {
+                $('#editWebinarSettings').hide();
+            }
+        }
+
+        //disable org email settings.display user email settings or not
+        function hideUserEmailSettings(isChecked){  
+            var ele = $('#userSettings').find("tr:last-child")[0]; 
+            if(ele){  
+                if(isChecked){ 
+                    ele.style.display='none';
+                }else{
+                    ele.style.display='';
+                }
+          }   
+        }
+
+        function hideHintOption(isChecked){
+            if(isChecked) {
+                $('#hintOption').show();
+            } else {
+                $('#hintOption').hide();
+            }
+        }
+        
+        //if you disable or enable 'enable password' in zoom config,show or hide user password settings dynamic
+        function hideUserPasswordSettings(isChecked){
+            if(isChecked) {
+                $('#showEditUserPasswordSettings').show();
+            } else {
+                $('#showEditUserPasswordSettings').hide();
+            }
+        }
+
+        //edit page:hide password textarea dynamic
+        function hidePassword(value){
+            console.log('select value change:'+value);
+           // if(window.inputPasswordId){
+            var inputPassword = $('#showEditUserPasswordSettings').find('tr:last-child td.dataCol.last:eq(1) input');
+            var labelPassword = $('#showEditUserPasswordSettings').find('tr:last-child th.labelCol.vfLabelColTextWrap.last:eq(1) label');
+            if(value==2){
+                if(inputPassword&& inputPassword[0]){
+                inputPassword[0].style.display='';
+              }
+              if(labelPassword && labelPassword [0]){
+                  labelPassword[0].style.display='';
+              }
+            }else{
+                if(inputPassword&& inputPassword[0]){
+                inputPassword[0].style.display='none';
+                }
+                if(labelPassword && labelPassword [0]){
+                  labelPassword[0].style.display='none';
+              }
+            }       
+        }
+
+    </script>
+    <apex:outputPanel id="sldsPannel" >
+        <style>
+      .detailList label{  width: 50% !important;}
+
+      .pbSubsection .detailList label {
+          width: 53% !important;
+      }
+
+    .pbSubheader {
+    background-color: #A2E7FD !important;
+    
+    }
+    .apexp .bPageBlock.apexDefaultPageBlock .pbBody .pbSubheader {
+    border-top: 0;
+    color: #000000 !important;font-weight: normal !important;
+}
+
+        body .helpButton, body .helpButtonOn, .slds-vf-scope .helpButton, .slds-vf-scope .helpButtonOn {
+            justify-content: flex-start;            
+        }
+
+        #showEditUserPasswordSettings .dataCol.first:first-of-type,
+        #showUserPasswordSettings .dataCol.first:first-of-type {
+            padding-left: 60px;
+        }
+
+        #showEditUserPasswordSettings th label,
+        #showUserPasswordSettings th label {
+            width: 100% !important;
+        }
+
+        #showEditUserPasswordSettings td
+        #showEditUserPasswordSettings th,
+        #showUserPasswordSettings td,
+        #showUserPasswordSettings th {
+            white-space: nowrap;
+        }
+
+        .password-inputbox {
+            min-width: auto !important;
+        }
+
+        .radioClass{
+            margin-left: 30px;
+        }
+        .linkDivClass{
+            line-height:1.75;
+            font-size:12px;
+            padding-left:15px;
+            padding-bottom:10px;
+            color:gray !important
+        }
+        .linkClass{
+            color:#2da5ff;
+            font-size:16px;
+            font-weight:bold;
+        }
+    </style>
+    </apex:outputPanel>
+    <apex:form >
+        <apex:actionFunction name="refreshPage" action="{!refreshPage}" rerender="out" status="myStatus"/>
+        <apex:actionFunction name="doInit" action="{!init}" rerender="pbxMessage"/>
+        <script>
+            window.onload=function()
+            {
+              doInit();
+            };
+         </script>
+    </apex:form>
+  
+    <div class = "slds-scope">
+        <apex:composition template="zoom_app__zoomheader">
+            <apex:define name="body">
+                 <apex:form id="mainForm">
+                    <div style="text-align: right;">
+                        <apex:image url="{!URLFOR(HTMLENCODE($Resource.zoom_app__zoom), 'images/zoom.jpg')}" />
+                    </div>
+                    <apex:pageMessages />
+                    <apex:pageBlock title="Configuration Panel"  rendered="{!showList}">
+                        <apex:pageBlockSection title="Zoom Credentials Settings"  collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                            <apex:outputField value="{!zoomObj.zoom_app__Zoom_API_Key__c}" rendered="{!$ObjectType.zoom_app__Zoom__c.fields.zoom_app__Zoom_API_Key__c.accessible}"/>
+                            <br />
+                            <!-- <apex:outputField value="{!zoomObj.zoom_app__Zoom_API_Secret__c}" rendered="{!$ObjectType.zoom_app__Zoom__c.fields.zoom_app__Zoom_API_Secret__c.accessible}"/> -->
+                            <apex:inputSecret value="{!zoomObj.zoom_app__Zoom_API_Secret__c}" disabled="true" rendered="{!$ObjectType.zoom_app__Zoom__c.fields.zoom_app__Zoom_API_Secret__c.accessible}" redisplay="true"/>
+                        </apex:pageBlockSection>
+                        <apex:outputText rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                        <div class="linkDivClass">"Zoom API Key" and "Zoom API Secret" are required to create, retrieve, and manage Zoom meetings and webinars.</div>
+                        </apex:outputText>
+                        <apex:pageBlockSection title="Zoom Meeting Settings"  collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                            <apex:outputField value="{!zoomCustomSetting.zoom_app__Mail_Default_From_Address__c}" />
+                            <br />
+                            <apex:outputField value="{!zoomObj.zoom_app__Populate_Details_into_Event_Description__c}" />
+                            <br />
+                            <apex:outputField value="{!zoomObj.zoom_app__Disable_Invitation_Email__c}" />
+                            <br />
+                            <apex:outputField value="{!zoomObj.zoom_app__Enable_Password__c}" />
+                            <br />
+                        </apex:pageBlockSection>
+                        <apex:pageBlockSection title="Zoom Phone Settings"  collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                            <apex:pageblockSectionItem >   
+                                <apex:outputLabel value="Phone-Customize Call Log Fields" style="width:100% !important">
+                                </apex:outputLabel>
+                                <apex:outputPanel >
+                                    <span>
+                                        <a href="#" onclick="openConfigDialog()">View All</a>
+                                    </span>
+                                </apex:outputPanel>
+                            </apex:pageblockSectionItem>
+                            <br/>
+                            <apex:pageblockSectionItem > Phone-Auto Save Call Logs
+                            <apex:outputField value="{!zoomCustomSetting.zoom_app__Phone_Auto_Save_Call_Logs__c}" />
+                            </apex:pageblockSectionItem>
+                            <br />
+                            <apex:pageblockSectionItem >Enable Phone Message for Salesforce
+                                 <apex:inputCheckbox id="pbxMessage"  value="{!phoneMessageSettingsFromAPI}"  disabled="true" style="background-color:rgb(255, 255, 255)"/>
+                            </apex:pageblockSectionItem>
+                            <br/>
+                        </apex:pageBlockSection>
+                        <span id="showWebinarSettings">
+                            <apex:pageBlockSection title="Zoom Webinar Settings"  collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                                <apex:outputField value="{!zoomWebinarConfig.zoom_app__Create_Campaign_for_each_Webinar__c}" />
+                                <br />
+                                <apex:outputField value="{!zoomWebinarConfig.zoom_app__Add_Registrants_as_Campaign_Members__c}" />
+                                <br />
+                                <apex:outputField value="{!zoomWebinarConfig.zoom_app__Create_new_Lead__c}" />
+                                <br />
+                            </apex:pageBlockSection>
+                            <div id="showWebinarSyncLink" class="linkDivClass">To synch Zoom webinar information into Salesforce, you must authorize access to your org's Webinar data.Click <a href="{!webhookInstallUrl}" target="_blank" class="linkClass">here</a> to authorize access.<br/><span id="hintOption">Only 'Marketing Users' can create campaigns - please verify in your user profile.</span></div>
+                        </span>
+                        <span id="userSettingDisplay">
+                        <apex:pageBlockSection title="User Settings">
+                            <apex:outputField value="{!loginUser.zoom_app__isPMI_Enabled__c}" rendered="{!$ObjectType.User.fields.zoom_app__isPMI_Enabled__c.accessible}" />
+                            <br />
+                            <apex:outputField value="{!loginUser.zoom_app__Send_Email_to_Attendee__c}" rendered="{!$ObjectType.User.fields.zoom_app__Send_Email_to_Attendee__c.accessible}"/>
+                            <br />
+                            <apex:outputField value="{!loginUser.zoom_app__Send_ICS_in_Invitation_Email__c}" />
+                            <br />
+                            <apex:outputField value="{!loginUser.zoom_app__Disable_Invitation_Email__c}" rendered="{! !zoomObj.Disable_Invitation_Email__c}"></apex:outputField>
+                        </apex:pageBlockSection>
+                       </span>
+                        <span id="showUserPasswordSettings">
+                            <apex:pageBlockSection title="User Passcode Settings" rendered="{!zoomObj.zoom_app__Enable_Password__c}">
+                                <apex:outputText label="PMI Meeting Passcode (on zoom.us)" value="{!PMIPassword}"></apex:outputText>
+                                <br/>
+                                <apex:selectRadio layout="pageDirection" styleClass="radioClass" disabled="true"  value="{!loginUser.zoom_app__Meeting_Password_Type__c}">
+                                <apex:selectOption itemLabel="use PMI passcode for all non-PMI meetings" itemValue="1"></apex:selectOption>
+                                <apex:selectOption itemLabel="set a passcode for all non-PMI meetings" itemValue="2"></apex:selectOption>
+                                <apex:selectOption itemLabel="generate a random passcode for each non-PMI meeting" itemValue="3"></apex:selectOption>
+                                </apex:selectRadio>
+                                <apex:outputField label="Your Passcode" value="{!loginUser.zoom_app__Zoom_Meeting_Password__c}" rendered="{!IF(loginUser.zoom_app__Meeting_Password_Type__c==2,true,false)}"/>
+                            </apex:pageBlockSection>
+                        </span>
+                        <apex:pageBlockSection title="User Webhook Bot Notification Settings" rendered="false">
+                            <apex:outputField value="{!loginUser.zoom_app__Webhook_URL__c}" rendered="{!$ObjectType.User.fields.zoom_app__Webhook_URL__c.accessible}" />
+                            <br />
+                            <apex:outputField value="{!loginUser.zoom_app__Secret_Token__c}" rendered="{!$ObjectType.User.fields.zoom_app__Secret_Token__c.accessible}"/>
+                            <br />
+                        </apex:pageBlockSection>
+                        <apex:pageBlockSection title="User Google Calendar API Settings">
+                            <apex:pageblockSectionItem > Active                                 
+                                <apex:outputField value="{! evt.IsReminderSet}" />
+                            </apex:pageblockSectionItem>
+                            <br />
+                            <apex:pageblockSectionItem > API Key 
+                                
+                                <apex:outputText value="{!ApiKey}"  />
+                            </apex:pageblockSectionItem>
+                            <br />
+                            <apex:pageblockSectionItem > Client Id 
+                                
+                                <apex:outputText value="{!clientId}"  />
+                            </apex:pageblockSectionItem>
+                            <br />
+                            <apex:pageblockSectionItem > Client Secret 
+                                
+                                <apex:outputText value="{!clientSecret}"  />
+                            </apex:pageblockSectionItem>
+                            <br />
+                        </apex:pageBlockSection>
+
+                        <apex:pageBlockSection title="Create Events for Non Salesforce Zoom Meetings for matching Contacts / Leads" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                            <apex:pageBlockSectionItem >Active  
+                                <apex:outputField value="{! evt.IsPrivate}" />
+                            </apex:pageBlockSectionItem>
+                            <br/>
+                        </apex:pageBlockSection>
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <apex:commandButton styleClass="myCustomBtn" value="Edit" action="{!editRecord}" reRender="mainForm" onComplete="initWebinarSettingsStatus();" />
+                        </div>
+                    </apex:pageBlock>
+                    <div class = "slds-scope">
+                        <apex:pageBlock title="Configuration Panel" rendered="{!showEdit}" >
+                            <apex:pageBlockSection title="Zoom Credentials Settings"  collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                                <apex:pageblockSectionItem > Zoom API Key  
+                                    
+                                    <apex:inputField value="{!zoomObj.zoom_app__Zoom_API_Key__c}" style="width:70%;" />
+                                </apex:pageblockSectionItem>
+                                <br/>
+                                <apex:pageblockSectionItem > Zoom API Secret 
+                                    <apex:inputField value="{!zoomObj.zoom_app__Zoom_API_Secret__c}"  style="width:70%;"/>
+                                </apex:pageblockSectionItem>
+                                <br/>
+                            </apex:pageBlockSection>
+                            <apex:outputText rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                            <div class="linkDivClass">"Zoom API Key" and "Zoom API Secret" are required to create, retrieve, and manage Zoom meetings and webinars.</div>
+                             </apex:outputText>
+                            <apex:pageBlockSection title="Zoom Meeting Settings" collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">                               
+                                <apex:pageblockSectionItem >Mail Default From Address
+                                     <!-- <apex:inputField value="{!zoomCustomSetting.zoom_app__Mail_Default_From_Address__c}" style="width:70%;" /> -->
+                                     <apex:selectList value="{!zoomCustomSetting.zoom_app__Mail_Default_From_Address__c}" size="1" multiselect="false" styleClass="myCustomSelect">
+                                        <apex:selectOptions value="{!owdMails}"/>
+                                    </apex:selectList>
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem >Populate Details into Event Description
+                                    <apex:inputField value="{!zoomObj.zoom_app__Populate_Details_into_Event_Description__c}"  />
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem labelStyleClass="invitationEmail" >Disable Invitation Email
+                                    <apex:inputCheckbox id="disable_invitation_email" value="{!zoomObj.zoom_app__Disable_Invitation_Email__c}" onclick="javascript:hideUserEmailSettings(this.checked);">
+                                    </apex:inputCheckbox>
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem >Enable Passcode For Non-PMI Meeting
+                                    <apex:inputCheckbox id="enable_meeting_password" value="{!zoomObj.zoom_app__Enable_Password__c}" onclick="javascript:hideUserPasswordSettings(this.checked);">
+                                    </apex:inputCheckbox>
+                                </apex:pageblockSectionItem>
+                                    <br />
+                            </apex:pageBlockSection>
+                            <apex:pageBlockSection title="Zoom Phone Settings" collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                                <apex:pageblockSectionItem >
+                                    <apex:outputLabel value="Phone-Customize Call Log Fields" style="width:100% !important">
+                                    </apex:outputLabel>
+                                    <apex:outputLabel >
+                                        <span>
+                                            <a href="#" onclick="openConfigDialog()">View All</a>
+                                            </span>
+                                    </apex:outputLabel>
+                             </apex:pageblockSectionItem>
+                                <br/>
+                                <apex:pageblockSectionItem > Phone-Auto Save Call Logs
+                                <apex:inputCheckbox value="{!zoomCustomSetting.zoom_app__Phone_Auto_Save_Call_Logs__c}" />
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem >Enable Phone Message for Salesforce
+                                    <apex:inputCheckbox id="pbxMessage"  value="{!phoneMessageSettingsFromSalesforce}"  />
+                                </apex:pageblockSectionItem>
+                                <br />
+                            </apex:pageBlockSection>
+                            <span id="editWebinarSettings">
+                                <apex:pageBlockSection title="Zoom Webinar Settings"  collapsible="false" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                                <apex:pageBlockSectionItem >
+                                    Create Campaign for each Webinar
+                                    <apex:inputField value="{!zoomWebinarConfig.zoom_app__Create_Campaign_for_each_Webinar__c}" onclick="javascript:hideHintOption(this.checked);"/>
+                                </apex:pageBlockSectionItem> 
+                                <br />
+                                <apex:pageBlockSectionItem >
+                                    Add Registrants as Campaign Members
+                                    <apex:inputField value="{!zoomWebinarConfig.zoom_app__Add_Registrants_as_Campaign_Members__c}"/>       
+                                </apex:pageBlockSectionItem>
+                                <br />
+                                <apex:pageBlockSectionItem >
+                                    Create new Lead
+                                    <apex:inputField value="{!zoomWebinarConfig.zoom_app__Create_new_Lead__c}"/>
+                                </apex:pageBlockSectionItem> 
+                                <br />
+                                </apex:pageBlockSection>
+                                <div id="showWebinarSyncLink" class="linkDivClass">To synch Zoom webinar information into Salesforce, you must authorize access to your org's Webinar data.Click <a href="{!webhookInstallUrl}" target="_blank" class="linkClass">here</a> to authorize access.<br/><span id="hintOption">Only 'Marketing Users' can create campaigns - please verify in your user profile.</span></div>
+                            </span>
+
+                            <span id="userSettings">
+                            <apex:pageBlockSection title="User Settings">
+
+                                <apex:pageblockSectionItem > PMI Enabled For Scheduled Meeting
+                                    <apex:inputField value="{!loginUser.zoom_app__isPMI_Enabled__c}"  />
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem > Send Email to Attendees at Launch 
+                                    <apex:inputField value="{!loginUser.zoom_app__Send_Email_to_Attendee__c}" />
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem >Send ICS in Invitation Email
+                                    <apex:inputField value="{!loginUser.zoom_app__Send_ICS_in_Invitation_Email__c}" />
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem >Disable Invitation Email
+                                    <apex:inputField id="user_disable_invitation_email" value="{!loginUser.zoom_app__Disable_Invitation_Email__c}">
+                                    </apex:inputField>
+                                </apex:pageblockSectionItem>
+                                <br />
+                            </apex:pageBlockSection>
+                            </span>
+                            <span id="showEditUserPasswordSettings">
+                                    <apex:pageBlockSection title="User Passcode Settings">
+                                        <apex:outputText label="PMI Meeting Passcode (on zoom.us)" value="{!PMIPassword}"></apex:outputText><br/>
+                                        <apex:selectRadio layout="pageDirection" styleClass="radioClass"  value="{!loginUser.zoom_app__Meeting_Password_Type__c}" 
+                                        onclick="javascript:hidePassword(this.value);">
+                                        <apex:selectOption itemLabel="use PMI passcode for all non-PMI meetings" itemValue="1"></apex:selectOption> 
+                                        <apex:selectOption itemLabel="set a passcode for all non-PMI meetings" itemValue="2" id="fixedPassword"></apex:selectOption>  
+                                        <apex:selectOption itemLabel="generate a random passcode for each non-PMI meeting" itemValue="3"></apex:selectOption>
+                                      </apex:selectRadio>
+                                        <apex:inputField label="Set Your Passcode" value="{!loginUser.zoom_app__Zoom_Meeting_Password__c}" styleClass="password-inputbox"/>
+                                    </apex:pageBlockSection>
+                                </span>
+                            <apex:pageBlockSection title="User Webhook Bot Notification Settings" rendered="false">
+                                <apex:pageblockSectionItem > Webhook Notification URL 
+                                    
+                                    <apex:inputField value="{!loginUser.zoom_app__Webhook_URL__c}" style="width:70%;"/>
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem > Secret Token 
+                                    
+                                    <apex:inputField value="{!loginUser.zoom_app__Secret_Token__c}" style="width:70%;" />
+                                </apex:pageblockSectionItem>
+                                <br />
+                            </apex:pageBlockSection>
+
+
+                            <apex:pageBlockSection title="User Google Calendar API Settings">
+                                <apex:pageblockSectionItem > Active 
+                                    
+                                    <apex:inputcheckbox value="{!Active}" disabled="false"/>
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem > API Key 
+                                    
+                                    <apex:inputText value="{!ApiKey}" size="38" style="width:70%;" />
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem > Client Id 
+                                    
+                                    <apex:inputText value="{!clientId}" size="38" style="width:70%;"/>
+                                </apex:pageblockSectionItem>
+                                <br />
+                                <apex:pageblockSectionItem > Client Secret 
+                                    
+                                    <apex:inputText value="{!clientSecret}" size="38" style="width:70%;"/>
+                                </apex:pageblockSectionItem>
+                                <br />
+                            </apex:pageBlockSection>
+                            <apex:pageBlockSection title="Create Events for Non Salesforce Zoom Meetings for matching Contacts / Leads" rendered="{!$ObjectType.zoom_app__Zoom__c.createable}">
+                                <apex:pageBlockSectionItem >    Active 
+                                    
+                                    <apex:inputCheckbox value="{!ZoomExternalBatch}" disabled="false"></apex:inputCheckbox>
+                                </apex:pageBlockSectionItem>
+                                <br />
+                                <apex:pageBlockSectionItem rendered="{!Not(ZoomExternalBatch)}"> Start Time 
+                                    
+                                    <apex:inputField value="{!evt.startDateTime}"/>
+                                </apex:pageBlockSectionItem>
+                                <br />
+                                <apex:pageBlockSectionItem rendered="{!Not(ZoomExternalBatch)}"> Run every Hour(s) interval 
+                                    
+                                    <apex:selectList value="{!hr}" size="1" multiselect="false" styleClass="myCustomSelect">
+                                        <apex:selectOptions value="{!hours}"/>
+                                    </apex:selectList>
+                                </apex:pageBlockSectionItem>
+                                <br/>
+                            </apex:pageBlockSection>
+                            <div style="text-align: center; margin-bottom: 10px;">
+                                <apex:commandButton styleClass="myCustomBtn" action="{!Save}" value="Save"/>
+                                <button type="button" class="myCustomBtn"   style="margin-left: 15px;" onClick="location.reload();">Cancel</button>
+                            </div>
+                        </apex:pageBlock>
+                    </div>
+                </apex:form>
+            </apex:define>
+        </apex:composition>
+    </div>
+    <div id="call-log-config-dialog">                                
+        <config-dialog></config-dialog>
+    </div>
+
+    <script type="text/template" id="config-dialog-template">
+        <zm-dialog
+            title="Customize Fields"
+            :visible="configDialogVisible"
+            top="5px"
+            width="450px"
+            center>
+            <zm-form :model="form">
+                <zm-row class="config-form-item-label">
+                    <zm-col :span="24">
+                        <span>Subject</span>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item">
+                    <zm-col :span="24">
+                        <zm-input v-model="form.subject" :style="formItemStyle" autocomplete="off" placeholder="Outbound to 17034752157" ></zm-input>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item-label">
+                    <zm-col :span="24">
+                        <span>Contact/Lead</span>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item">
+                    <zm-col :span="24">
+                        <zm-select ref="areaSelect" :style="formItemStyle" v-model="form.contact" placeholder="Name" :automatic-dropdown="true" >
+                            <zm-option label="" value=""></zm-option>
+                          </zm-select>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item-label">
+                    <zm-col :span="24">
+                        <span>Relate To</span>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item">
+                    <zm-col :span="24">
+                        <zm-select ref="areaSelect":style="formItemStyle"  v-model="form.relateTo" placeholder="Please Select" :automatic-dropdown="true" >
+                            <zm-option label="" value=""></zm-option>
+                        </zm-select>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item">
+                    <zm-col :span="24">
+                        <zm-input id="relateToSearch" ref="areaSelect" :style="formItemStyle" v-model="form.search" placeholder="Search" :automatic-dropdown="true" >
+                            <i slot="prefix" class="zm-input__icon zm-icon-search"></i>
+                        </zm-input >
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item-label">
+                    <zm-col :span="24">
+                        <span>Comments</span>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item">
+                    <zm-col :span="24">
+                        <zm-input type="textarea" :rows="2" v-model="form.comments" :style="formItemStyle"  autocomplete="off" placeholder="Add Comment..." ></zm-input>
+                    </zm-col>
+                </zm-row>
+                <zm-row class="config-form-item">
+                    <div id="extensionHtml" v-for = "(item,index) in userSelectedCallLogFields">
+                        <div class="call-log-label" v-if="item.fieldType =='STRING' || item.fieldType =='PICKLIST' || item.fieldType =='COMBOBOX' || item.fieldType =='TEXTAREA'">
+                            <span v-html="item.fieldLabel"></span>
+                        </div>
+                        <div class="call-log-right-col-apex zm-row" v-if="item.fieldType =='STRING'"> 
+                            <zm-col :span="24">
+                                <a :style="formItemDeleteStyle" v-on:click="remove(index)">
+                                    <i class="zm-icon-delete" :style="updownlink"></i>
+                                </a>
+                                <zm-input :style="formItemStyle" autocomplete="off" placeholder=""></zm-input>
+                                <a  v-if="index!=0" :style="formItemMoveUpStyle" :class="index==0?'':''" v-on:click="moveUp(index)">
+                                    <i class="zm-icon-arrow-up" :style="updownlink"></i>
+                                </a>
+                                <a v-else :style="formItemMoveUpStyleDisabled">
+                                    <i class="zm-icon-arrow-up" :style="updownlink"></i>
+                                </a>
+                                <a v-if="index!=(userSelectedCallLogFields.length-1)"  :style="formItemMoveDownStyle" :class="index==(userSelectedCallLogFields.length-1)?'formItemHide':''"  v-on:click="moveDown(index)">
+                                    <i  class="zm-icon-arrow-down" :style="updownlink"></i>
+                                </a>
+                                <a v-else :style="formItemMoveDownStyleDisabled">
+                                    <i class="zm-icon-arrow-down" :style="updownlink"></i>
+                                </a>
+                            </zm-col>
+                        </div>
+                        <div class="call-log-right-col-apex zm-row" v-else-if="item.fieldType =='TEXTAREA'" > 
+                            <a :style="formItemDeleteStyle" v-on:click="remove(index)">
+                                <i class="zm-icon-delete" :style="updownlink"></i>
+                            </a>
+                            <zm-input type="textarea" :rows="1" :style="formItemStyle" autocomplete="off" placeholder=""></zm-input> 
+                            <a  v-if="index!=0" :style="formItemMoveUpStyle" :class="index==0?'':''" v-on:click="moveUp(index)">
+                                <i class="zm-icon-arrow-up" :style="updownlink"></i>
+                            </a>
+                            <a v-else :style="formItemMoveUpStyleDisabled">
+                                <i class="zm-icon-arrow-up" :style="updownlink"></i>
+                            </a>
+                            <a v-if="index!=(userSelectedCallLogFields.length-1)"  :style="formItemMoveDownStyle" :class="index==(userSelectedCallLogFields.length-1)?'formItemHide':''"  v-on:click="moveDown(index)">
+                                <i  class="zm-icon-arrow-down" :style="updownlink"></i>
+                            </a>
+                            <a v-else :style="formItemMoveDownStyleDisabled">
+                                <i class="zm-icon-arrow-down" :style="updownlink"></i>
+                            </a>
+                        </div>
+                        <zm-row v-else-if="item.fieldType =='PICKLIST' || item.fieldType =='COMBOBOX'" class = "call-log-right-col-apex">
+                            <zm-col :span="24">
+                                <a :style="formItemDeleteStyle" v-on:click="remove(index)">
+                                    <i class="zm-icon-delete" :style="updownlink"></i>
+                                </a>
+                                <zm-select ref="areaSelect" :style="formItemStyle">
+                                    <zm-option label="" value=""></zm-option>
+                                </zm-select>
+                                <a  v-if="index!=0" :style="formItemMoveUpStyle" :class="index==0?'':''" v-on:click="moveUp(index)">
+                                    <i class="zm-icon-arrow-up" :style="updownlink"></i>
+                                </a>
+                                <a v-else :style="formItemMoveUpStyleDisabled">
+                                    <i class="zm-icon-arrow-up" :style="updownlink"></i>
+                                </a>
+                                <a v-if="index!=(userSelectedCallLogFields.length-1)"  :style="formItemMoveDownStyle" :class="index==(userSelectedCallLogFields.length-1)?'formItemHide':''"  v-on:click="moveDown(index)">
+                                    <i  class="zm-icon-arrow-down" :style="updownlink"></i>
+                                </a>
+                                <a v-else :style="formItemMoveDownStyleDisabled">
+                                    <i class="zm-icon-arrow-down" :style="updownlink"></i>
+                                </a>
+                        </zm-col>
+                    </zm-row>
+                    </div>
+                </zm-row>	
+              </zm-form>
+              <zm-row class="config-form-item" style="padding-top:5px;">
+                <zm-dropdown  trigger="click">
+                    <span class="zm-dropdown-link" style="color:#0E72ED;cursor:pointer;font-size:14px;">Add New Field<i class="zm-icon-down zm-icon--right"></i>
+                    </span>
+                    <zm-dropdown-menu slot="dropdown" style="max-height:600px;overflow-y:auto;">
+                        <div v-for = "(item,index) in optionalCallLogFields"  v-on:click="addFieldLabel(item)">  
+                            <zm-dropdown-item>
+                                <div><span v-html="item.fieldLabel"></span></div>
+                                <span style="font-size: 11px; color: rgb(180, 180, 180);">{{item.fieldSource}}</span>
+                            </zm-dropdown-item>
+                        </div>
+                    </zm-dropdown-menu>
+                  </zm-dropdown>
+                </zm-row>
+                <span slot="footer" class="dialog-footer">
+                <zm-button v-on:click="saveCallLogConfigs" type="primary">Save</zm-button>
+                <zm-button v-on:click="closeConfigDialog">Cancel</zm-button>
+                </span>
+        </zm-dialog>
+    </script>
+    
+    <script>
+    var dialogComponent = Vue.component('config-dialog', {
+        template: '#config-dialog-template',
+			data:function(){
+                return {
+                    configDialogVisible:false,
+                    index:2,
+                    name:"hello vue",
+                    userSelectedCallLogFields:[],
+                    optionalCallLogFields:[],
+                    latestSelectField:'',
+                    form: {
+                        subject:'',
+                        contact:'',
+                        relateTo:'',
+                        search:'',
+                        comments:''
+                    },
+                    formItemStyle:'width:200px;font-size:12px;',
+                    formItemDeleteStyle:'cursor:pointer;left:285px;position:absolute;border: 1px solid #BABACC;box-sizing: border-box;border-radius: 6px;width: 32px;height: 32px;',
+                    formItemMoveUpStyle:'cursor:pointer;position:absolute;margin-left:8px;border: 1px solid #BABACC;box-sizing: border-box;border-radius: 6px;width: 32px;height: 32px;',
+                    formItemMoveDownStyle:'cursor:pointer;position:absolute;margin-left:47px;border: 1px solid #BABACC;box-sizing: border-box;border-radius: 6px;width: 32px;height: 32px;',
+                    formItemHide:'visibility:hidden',
+                    formItemMoveUpStyleDisabled:'cursor:pointer;position:absolute;margin-left:8px;border: 1px solid #BABACC;box-sizing: border-box;border-radius: 6px;width: 32px;height: 32px;background: #EDEDF4;',
+                    formItemMoveDownStyleDisabled:'cursor:pointer;position:absolute;margin-left:46px;border: 1px solid #BABACC;box-sizing: border-box;border-radius: 6px;width: 32px;height: 32px;background: #EDEDF4;',
+                    updownlink:'color: #747487;padding-top: 8px;padding-left: 8px;'
+                 }
+			},
+			methods:{
+                remove:function(index){
+                    var item = this.userSelectedCallLogFields[index];
+                    this.userSelectedCallLogFields.splice(index,1);
+                    this.addItemToOptionalFieldsList(item);
+                },
+                moveUp:function(index){
+                    console.log('moveUp:'+ index);
+                    var len = this.userSelectedCallLogFields.length;
+                    if(index>=1){
+                        this.userSelectedCallLogFields = swapArray(this.userSelectedCallLogFields,index-1,index);
+                    }
+
+                },
+                moveDown:function(index){
+                    console.log('moveDown:'+ index);
+                    var len = this.userSelectedCallLogFields.length;
+                    if(index+1<=len-1){
+                        this.userSelectedCallLogFields = swapArray(this.userSelectedCallLogFields,index,index+1);
+                    }
+                },
+				addFieldLabel:function(item){
+                    console.log('add field label');
+                    //user can select 5 at most
+                    if(this.userSelectedCallLogFields){
+                       if(this.userSelectedCallLogFields.length<5){
+                           var isAdded = false;
+                           for(var i=0;i <this.userSelectedCallLogFields.length;i++){
+                                if(this.userSelectedCallLogFields[i].fieldName ==  item.fieldName){
+                                    isAdded = true;
+                                    break;
+                                }
+                           }
+                           if(isAdded){
+                                var message = 'You have already added this field !';
+                                this.$message({
+                                    message: message,
+                                    type: 'warning'
+                                });
+                           }else{
+                            this.userSelectedCallLogFields.push(item);
+                            this.removeOptionalFieldsFromList(item);
+                           }
+                       }else{
+                            var message = 'You can add 5 fields at most!';
+                            this.$message({
+                                message: message,
+                                type: 'warning'
+                            });
+                       }
+                    }else{
+                        this.userSelectedCallLogFields = [];
+                        this.userSelectedCallLogFields.push(item);
+                        this.removeOptionalFieldsFromList(item);
+                    }
+                },
+                addItemToOptionalFieldsList: function(item){
+                    this.optionalCallLogFields.push(item);
+                },
+                removeOptionalFieldsFromList:function(item){
+                    var that = this;
+                    this.optionalCallLogFields.forEach(function(optionalItem){
+                        if(optionalItem.fieldName == item.fieldName){
+                            //remove the selected fields from the dropdown list
+                            that.optionalCallLogFields.remove(optionalItem);
+                        }
+                    });
+                },
+                openConfigDialog:function(){
+                    this.configDialogVisible=true;
+                    var that = this;
+                    getUserSelectedCallLogFields(function(result,event){
+                        console.log('get user call log config fields result:'+ result +',event:'+event.message);
+                        if(result){
+                            that.userSelectedCallLogFields = result;
+                            if(that.userSelectedCallLogFields && that.optionalCallLogFields){
+                                for(var i=0;i <that.userSelectedCallLogFields.length;i++){
+                                    that.optionalCallLogFields.forEach(function(item){
+                                        if(that.userSelectedCallLogFields[i].fieldName == item.fieldName){
+                                            that.userSelectedCallLogFields[i].fieldLabel = item.fieldLabel;
+                                            //remove the selected fields from the dropdown list
+                                            that.optionalCallLogFields.remove(item);
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
+                },
+                closeConfigDialog:function(){
+                    //add the unsaved options to the drop-down box
+                    if(this.userSelectedCallLogFields){
+                       this.optionalCallLogFields = this.optionalCallLogFields.concat(this.userSelectedCallLogFields);
+                    }
+                    this.configDialogVisible=false;
+                },
+                saveCallLogConfigs:function(){
+                    var that = this;
+                    saveCallLogConfigFields(this.userSelectedCallLogFields,function(result,event){
+                        console.log('save call log config fields result:'+ result +',event:'+event);
+                        if (event.type == 'exception') {
+						   console.log('save call log config fields fail:'+ event.message)
+                        } else {
+                            if(result){
+                                var message = 'Customized Fields Saved Successfully';
+                                that.$message({
+                                    message: message,
+                                    type: 'success'
+                                });
+                                that.closeConfigDialog();
+                            }else{
+                                var message = 'Customized Fields Saved Fail';
+                                that.$message({
+                                    message: message,
+                                    type: 'warning'
+                                });
+                            }
+                        }
+                    });
+                }
+            },
+            mounted() {
+                this.optionalCallLogFields =  {!optionalCallLogFields};
+                //mounted
+                window.openConfigDialog=this.openConfigDialog;
+            }
+        });
+        
+        function saveCallLogConfigFields(stringFieldsValue,callback) {
+			Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.ZoomCallLogConfigController.saveUserSelectedCallLogFields}',
+            stringFieldsValue,callback);
+        }
+        
+        function getUserSelectedCallLogFields(callback){
+            Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.ZoomCallLogConfigController.getUserSelectedCallLogFields}',
+            callback,{ escape: false });  
+        }
+   </script>
+
+   <script>
+       var swapArray = function(arr, index1, index2) {
+            arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+            return arr;
+        };
+
+       var dialogObj = new Vue({
+           el:'#call-log-config-dialog',
+           data:{},
+           components:{
+               'config-dialog':dialogComponent
+           }
+       })
+   </script>
+
+   <style type="text/css">
+    .config-form-item{
+        padding:0px 0px 3px 100px;
+        font-weight: bold;
+    }
+    .config-form-item-label{
+        padding:5px 0px 1px 100px;
+        font-weight: bold;
+    }
+    .zm-dialog__header{
+       font-weight: bold;
+    }
+    .zm-dialog--center .zm-dialog__body{
+        padding:5px;
+    }
+    .zm-dialog__body{
+        font-size:12px;
+        font-family: Arial,Helvetica,sans-serif;
+    }
+    .zm-dialog__footer{
+        padding:5px;
+    }
+    .zm-dropdown-menu__item{
+        line-height: 1.3;   
+        padding-top:5px;
+    }
+
+    #relateToSearch{
+        padding-left: 30px;
+    }
+
+    .call-log-label{
+        padding:5px 0px 1px; 
+    }
+
+    input[type="text"]{
+        font-size: 12px !important;
+    }
+   </style>
+    
+    </html>
+</apex:page>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Lista ILT</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Listas ILT</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attended --></label>
+        <name>redwing__Attended__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>redwing__Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- ILT Class --></label>
+        <name>redwing__ILT_Class__c</name>
+        <relationshipLabel><!-- ILT Rosters --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ILT Session --></label>
+        <name>redwing__ILT_Session__c</name>
+        <relationshipLabel><!-- ILT Rosters --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Learning Assignment --></label>
+        <name>redwing__Learning_Assignment__c</name>
+        <relationshipLabel><!-- ILT Rosters --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>redwing__Status__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passed</masterLabel>
+            <translation><!-- Passed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>redwing__User__c</name>
+        <relationshipLabel><!-- ILT Rosters --></relationshipLabel>
+    </fields>
+    <gender>Masculine</gender>
+    <nameFieldLabel>Nome da Lista ILT</nameFieldLabel>
+</CustomObjectTranslation>

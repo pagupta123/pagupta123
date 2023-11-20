@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Einstellung für Kontakte und Organisationen --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Einstellungen für Kontakte und Organisationen --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Einstellung für Kontakte und Organisationen --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Einstellungen für Kontakte und Organisationen --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Einstellung für Kontakte und Organisationen --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Einstellungen für Kontakte und Organisationen --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Einstellung für Kontakte und Organisationen --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Einstellungen für Kontakte und Organisationen --></value>
+    </caseValues>
+    <fields>
+        <help>Einstellung für das Accountmodell. Sollte &quot;Haushalt-Account&quot;, &quot;Eins-zu-Eins“ oder &quot;Einzelperson&quot; sein. Ersetzt das benutzerdefinierte Feld &quot;Contact.SystemAccountProcessor__c&quot; &quot;Haushalt-Account&quot; ist das empfohlene Modell.</help>
+        <label><!-- Account Model --></label>
+        <name>npe01__Account_Processor__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Das Auslöserverhalten wird jetzt über die Seite &quot;Auslöserkonfiguration&quot; in den NPSP-Einstellungen gesteuert.</help>
+        <label><!-- DEPRECATED-Disable_IndividualAcc_trigger --></label>
+        <name>npe01__DISABLE_IndividualAccounts_trigger__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Das Auslöserverhalten wird jetzt über die Seite &quot;Auslöserkonfiguration&quot; in den NPSP-Einstellungen gesteuert.</help>
+        <label><!-- DEPRECATED-Disable_OppAccount_trigger --></label>
+        <name>npe01__DISABLE_OpportunityAccount_trigger__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Das Auslöserverhalten wird jetzt über die Seite &quot;Auslöserkonfiguration&quot; in den NPSP-Einstellungen gesteuert.</help>
+        <label><!-- DEPRECATED-Disable_OCR_trigger --></label>
+        <name>npe01__DISABLE_OpportunityContactRoles_trigger__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Das Auslöserverhalten wird jetzt über die Seite &quot;Auslöserkonfiguration&quot; in den NPSP-Einstellungen gesteuert.</help>
+        <label><!-- DEPRECATED-Disable_OppPayments_trigger --></label>
+        <name>npe01__DISABLE_OpportunityPayments_trigger__c</name>
+    </fields>
+    <fields>
+        <help>Gibt an, ob bei der Lead-Konvertierung eine Opportunity erstellt werden soll.</help>
+        <label><!-- Create Opportunity on Lead Convert --></label>
+        <name>npe01__Default_Opp_on_Convert__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Das Auslöserverhalten wird jetzt über die Seite &quot;Auslöserkonfiguration&quot; in den NPSP-Einstellungen gesteuert.</help>
+        <label><!-- DEPRECATED-Disable Account Model Trigger --></label>
+        <name>npe01__Disable_Account_Model_Trigger__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Das Auslöserverhalten wird jetzt über die Seite &quot;Auslöserkonfiguration&quot; in den NPSP-Einstellungen gesteuert.</help>
+        <label><!-- DEPRECATED-Enable OppContactRole Trigger --></label>
+        <name>npe01__Enable_Opportunity_Contact_Role_Trigger__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Es werden automatisch neue Versionen des Nonprofit Success Pack installiert.</help>
+        <label><!-- DEPRECATED-Enable Update Check --></label>
+        <name>npe01__Enable_Update_Check__c</name>
+    </fields>
+    <fields>
+        <help>Die Kennung des Account-Datensatztyps für Haushalt-Accounts. Wenn keine Auswahl getroffen wurde, wird der Account standardmäßig auf den Standard-Accountdatensatztyp des Benutzers festgelegt.</help>
+        <label><!-- Household Account Record Type --></label>
+        <name>npe01__HH_Account_RecordTypeID__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Es werden automatisch neue Versionen des Nonprofit Success Pack installiert.</help>
+        <label><!-- DEPRECATED-Has Package Update --></label>
+        <name>npe01__Has_Package_Update__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Es werden automatisch neue Versionen des Nonprofit Success Pack installiert.</help>
+        <label><!-- DEPRECATED-Last Update Check --></label>
+        <name>npe01__Last_Update_Check__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Es werden automatisch neue Versionen des Nonprofit Success Pack installiert.</help>
+        <label><!-- DEPRECATED-Max Package Version --></label>
+        <name>npe01__Max_Package_Version__c</name>
+    </fields>
+    <fields>
+        <help>Die Kennung des Account-Datensatztyps für Eins-zu-Eins-Accounts. Wenn keine Auswahl getroffen wurde, wird der Account standardmäßig auf den Standard-Accountdatensatztyp des Benutzers festgelegt.</help>
+        <label><!-- One-to-One Record Type --></label>
+        <name>npe01__One_to_One_RecordTypeID__c</name>
+    </fields>
+    <fields>
+        <help>Die Standardkontaktrolle, die automatisch dem primären Kontakt der Opportunity zugewiesen wird, wenn der Account der Opportunity ein Haushalt, ein Ein-zu-Eins-Account oder ein Einzelperson-Account ist.</help>
+        <label><!-- Contact Role for Individual Opps --></label>
+        <name>npe01__Opportunity_Contact_Role_Default_role__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Es werden automatisch neue Versionen des Nonprofit Success Pack installiert.</help>
+        <label><!-- DEPRECATED-Package Update URL --></label>
+        <name>npe01__Package_Update_URL__c</name>
+    </fields>
+    <fields>
+        <help>Aktiviert automatische Zahlungen, die für neue Opportunities/Spenden erstellt wurden.</help>
+        <label><!-- Automatic Payment Creation --></label>
+        <name>npe01__Payments_Enabled__c</name>
+    </fields>
+    <fields>
+        <help>ERSETZT. Es werden automatisch neue Versionen des Nonprofit Success Pack installiert.</help>
+        <label><!-- DEPRECATED-Update Check Interval --></label>
+        <name>npe01__Update_Check_Interval__c</name>
+    </fields>
+    <fields>
+        <help>Nur zur Systemverwendung: Namespace für paketübergreifende Funktionalität.</help>
+        <label><!-- GEM Namespace --></label>
+        <name>npsp__Advancement_Namespace__c</name>
+    </fields>
+    <fields>
+        <help>Bei Auswahl erstellt NPSP autom. ein Kampagnenmitglied, wenn Sie eine Opp. erstellen, der ein Hauptansprechpartner und eine Primäre Kampagnenquelle zugeordnet ist, oder wenn Sie diese Opp. mit der Phase &quot;Geschl./Gew.&quot; aktualisieren.</help>
+        <label><!-- Automatic Campaign Member Management --></label>
+        <name>npsp__Automatic_Campaign_Member_Management__c</name>
+    </fields>
+    <fields>
+        <help>Der Stand‘status, den NPSP bei Kampagnenmitgl. für Opp. m. d. Status &quot;Offen&quot; o. &quot;Geschl./Verloren&quot;, denen ein Hauptansprechp. u. eine prim. Kampagnenquelle zugeordnet ist, verwenden soll. Erfolgt kein Eintrag, verw. NPSP den 1. Status &quot;Nicht geantwortet&quot;.</help>
+        <label><!-- Campaign Member Non Responded Status --></label>
+        <name>npsp__Campaign_Member_Non_Responded_Status__c</name>
+    </fields>
+    <fields>
+        <help>Der Stand‘status, den NPSP bei Kampagnenmitgl. für Opp. m. d. Status &quot;Geschl./Gew.&quot;, denen ein Hauptansprechp. u. eine prim. Kampagnenquelle zugeordnet ist, verwenden soll. Erfolgt kein Eintrag, verw. NPSP den 1. Status &quot;Nicht geantwortet&quot;.</help>
+        <label><!-- Campaign Member Responded Status --></label>
+        <name>npsp__Campaign_Member_Responded_Status__c</name>
+    </fields>
+    <fields>
+        <help>Die Standard-Kontaktrolle, die automatisch dem Hauptansprechpartner der Opportunity zugewiesen wird, wenn der Account der Opportunity KEIN Haushalt-, Eins-zu-Eins- oder Einzelperson-Account ist.</help>
+        <label><!-- Contact Role for Organizational Opps --></label>
+        <name>npsp__Contact_Role_for_Organizational_Opps__c</name>
+    </fields>
+    <fields>
+        <help>Hiermit werden mehrere Regeln und Automatisierungen zu Zahlungen und Opportunities aktiviert, um sicherzustellen, dass die Verrechnungsdaten vollständig und konsistent sind.</help>
+        <label><!-- Enforce Accounting Data Consistency --></label>
+        <name>npsp__Enforce_Accounting_Data_Consistency__c</name>
+    </fields>
+    <fields>
+        <help>Wenn Sie hier etwas eingeben, erstellt NPSP automatisch einen Kontaktrollendatensatz für Opportunities mit einem Begünstigtenkontakt.</help>
+        <label><!-- Honoree Opportunity Contact Role --></label>
+        <name>npsp__Honoree_Opportunity_Contact_Role__c</name>
+    </fields>
+    <fields>
+        <help>Wenn dieses Kontrollkästchen ausgewählt ist, wird die Adressverwaltung für Haushalt-Accounts deaktiviert.</help>
+        <label><!-- Household Account Addresses Disabled --></label>
+        <name>npsp__Household_Account_Addresses_Disabled__c</name>
+    </fields>
+    <fields>
+        <help>Hiermit wird die maximale Anzahl an Zahlungen festgelegt, die beim Planen von Zahlungen für eine Opportunity zulässig sind.</help>
+        <label><!-- Max Payments --></label>
+        <name>npsp__Max_Payments__c</name>
+    </fields>
+    <fields>
+        <help>Wenn Sie hier etwas eingeben, erstellt NPSP automatisch einen Kontaktrollendatensatz für Opportunities mit einem Benachrichtigungsempfänger-Kontakt.</help>
+        <label><!-- Notification Recipient Opp Contact Role --></label>
+        <name>npsp__Notification_Recipient_Opp_Contact_Role__c</name>
+    </fields>
+    <fields>
+        <help>NPSP erst. autom. Zahlungsdatens. f. Opp. aller Datens‘typen. Wählen Sie belieb. Datens‘typen aus, zu denen nicht autom. Zahlungsdatens. erstellt werden sollen. Zum Ausw. von mehr als nur einem Datens‘typ zusätzl. auf die Strg- o. d. CMD-Taste klicken.</help>
+        <label><!-- Excluded Opp Record Types --></label>
+        <name>npsp__Opp_RecTypes_Excluded_for_Payments__c</name>
+    </fields>
+    <fields>
+        <help>NPSP erst. autom. Zahlungsdatens. für Opp. mit e-m belieb. Wert in d. Auswahlliste &quot;Typ&quot;. belieb. Typen ausw., zu denen nicht autom. Zahlungsdatens. erst. werden sollen. Zum Ausw. v. mehr als einem Typ zusätzl. auf die Strg- oder die CMD-Taste drücken.</help>
+        <label><!-- Excluded Opp Types --></label>
+        <name>npsp__Opp_Types_Excluded_for_Payments__c</name>
+    </fields>
+    <fields>
+        <help>Wenn dieses Kontrollkästchen ausgewählt ist, wird die Adressverwaltung für Nicht-Haushalt-Accounts wie etwa Organisations-Accounts aktiviert.</help>
+        <label><!-- Organizational Account Addresses Enabled --></label>
+        <name>npsp__Organizational_Account_Addresses_Enabled__c</name>
+    </fields>
+    <fields>
+        <help>NPSP setzt automatisch die Phase einer Opportunity auf diesen Wert, wenn der empfangene Zahlungsbetrag dem Opportunity-Betrag entspricht. Wenn keine Phase ausgewählt ist, ändert sich die Opportunity-Phase nicht, wenn die Zahlungen abgeschlossen sind.</help>
+        <label><!-- Opportunity Stage for When Fully Paid --></label>
+        <name>npsp__Payments_Auto_Close_Stage_Name__c</name>
+    </fields>
+    <fields>
+        <help>Wenn diese Option aktiviert ist, aktualisieren Änderungen an einem einzelnen Adressfeld eines Kontakts oder Accounts die vorhandene Adresse, anstatt eine neue Adresse zu erstellen.</help>
+        <label><!-- Simple Address Change Treated as Update --></label>
+        <name>npsp__Simple_Address_Change_Treated_as_Update__c</name>
+    </fields>
+    
+</CustomObjectTranslation>

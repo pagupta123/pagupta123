@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Cabeçalho de coluna personalizado --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Cabeçalhos de colunas personalizados --></value>
+    </caseValues>
+    <fields>
+        <help>O nome da API do campo mostrado na exibição da lista.</help>
+        <label><!-- Field API Name --></label>
+        <name>npsp__Field_Api_Name__c</name>
+    </fields>
+    <fields>
+        <help>A posição do campo na exibição da lista.</help>
+        <label><!-- Index --></label>
+        <name>npsp__Index__c</name>
+    </fields>
+    <fields>
+        <help>A exibição da lista (por exemplo, Lotes ou Modelos) que mostra este campo.</help>
+        <label><!-- List Name --></label>
+        <name>npsp__List_Name__c</name>
+    </fields>
+    
+</CustomObjectTranslation>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- Automatically add Webinar registrants as Campaign members. --></help>
+        <label><!-- Add Registrants as Campaign Members --></label>
+        <name>zoom_app__Add_Registrants_as_Campaign_Members__c</name>
+    </fields>
+    <fields>
+        <help><!-- Automatically create a Salesforce Campaign for each new Webinar --></help>
+        <label><!-- Create Campaign for each Webinar --></label>
+        <name>zoom_app__Create_Campaign_for_each_Webinar__c</name>
+    </fields>
+    <fields>
+        <help><!-- Automatically create new Leads for Non-Salesforce registrants(Can&apos;t match with any Contact/Lead by Email). --></help>
+        <label><!-- Create new Lead --></label>
+        <name>zoom_app__Create_new_Lead__c</name>
+    </fields>
+    <fields>
+        <label><!-- Syn Webinar Job Schedule Id --></label>
+        <name>zoom_app__Syn_Webinar_Job_Schedule_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enable Backend Job to Sync Webinar from Zoom to Salesfore, inlcuding New Webinar/Registrants/Panelist/Participants --></help>
+        <label><!-- Enable Sync Webinar Job --></label>
+        <name>zoom_app__Sync_Webinar__c</name>
+    </fields>
+</CustomObjectTranslation>

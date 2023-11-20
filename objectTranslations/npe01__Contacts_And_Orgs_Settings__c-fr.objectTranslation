@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Paramètre de contacts et d’organisations --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Paramètres de contacts et d’organisations --></value>
+    </caseValues>
+    <fields>
+        <help>Paramètre pour le modèle de compte. Doit normalement être soit « Compte de foyer », soit « Compte un-à-un », soit « Individuel ». Remplace le champ personnalisé Contact.SystemAccountProcessor__c. « Compte de foyer » est le modèle recommandé.</help>
+        <label><!-- Account Model --></label>
+        <name>npe01__Account_Processor__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Le comportement du déclencheur est désormais contrôlé dans la page Configuration de déclencheur des paramètres NPSP.</help>
+        <label><!-- DEPRECATED-Disable_IndividualAcc_trigger --></label>
+        <name>npe01__DISABLE_IndividualAccounts_trigger__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Le comportement du déclencheur est désormais contrôlé dans la page Configuration de déclencheur des paramètres NPSP.</help>
+        <label><!-- DEPRECATED-Disable_OppAccount_trigger --></label>
+        <name>npe01__DISABLE_OpportunityAccount_trigger__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Le comportement du déclencheur est désormais contrôlé dans la page Configuration de déclencheur des paramètres NPSP.</help>
+        <label><!-- DEPRECATED-Disable_OCR_trigger --></label>
+        <name>npe01__DISABLE_OpportunityContactRoles_trigger__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Le comportement du déclencheur est désormais contrôlé dans la page Configuration de déclencheur des paramètres NPSP.</help>
+        <label><!-- DEPRECATED-Disable_OppPayments_trigger --></label>
+        <name>npe01__DISABLE_OpportunityPayments_trigger__c</name>
+    </fields>
+    <fields>
+        <help>Indique si une opportunité doit être créée lors de la conversion d’une piste.</help>
+        <label><!-- Create Opportunity on Lead Convert --></label>
+        <name>npe01__Default_Opp_on_Convert__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Le comportement du déclencheur est désormais contrôlé dans la page Configuration de déclencheur des paramètres NPSP.</help>
+        <label><!-- DEPRECATED-Disable Account Model Trigger --></label>
+        <name>npe01__Disable_Account_Model_Trigger__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Le comportement du déclencheur est désormais contrôlé dans la page Configuration de déclencheur des paramètres NPSP.</help>
+        <label><!-- DEPRECATED-Enable OppContactRole Trigger --></label>
+        <name>npe01__Enable_Opportunity_Contact_Role_Trigger__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Les nouvelles versions de Nonprofit Success Pack seront automatiquement installées.</help>
+        <label><!-- DEPRECATED-Enable Update Check --></label>
+        <name>npe01__Enable_Update_Check__c</name>
+    </fields>
+    <fields>
+        <help>L’ID du type d’enregistrement de compte à utiliser pour les comptes de foyers. Si aucun n’est sélectionné, le compte utilisera le type d’enregistrement de compte par défaut de l’utilisateur.</help>
+        <label><!-- Household Account Record Type --></label>
+        <name>npe01__HH_Account_RecordTypeID__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Les nouvelles versions de Nonprofit Success Pack seront automatiquement installées.</help>
+        <label><!-- DEPRECATED-Has Package Update --></label>
+        <name>npe01__Has_Package_Update__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Les nouvelles versions de Nonprofit Success Pack seront automatiquement installées.</help>
+        <label><!-- DEPRECATED-Last Update Check --></label>
+        <name>npe01__Last_Update_Check__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Les nouvelles versions de Nonprofit Success Pack seront automatiquement installées.</help>
+        <label><!-- DEPRECATED-Max Package Version --></label>
+        <name>npe01__Max_Package_Version__c</name>
+    </fields>
+    <fields>
+        <help>L’ID du type d’enregistrement de compte à utiliser pour les comptes un-à-un. Si aucun n’est sélectionné, le compte utilisera le type d’enregistrement de compte par défaut de l’utilisateur.</help>
+        <label><!-- One-to-One Record Type --></label>
+        <name>npe01__One_to_One_RecordTypeID__c</name>
+    </fields>
+    <fields>
+        <help>Le rôle contact par défaut attribué automatiquement au contact principal de l’opportunité lorsque le compte de l’opportunité est un compte foyer, un-à-un, ou individuel.</help>
+        <label><!-- Contact Role for Individual Opps --></label>
+        <name>npe01__Opportunity_Contact_Role_Default_role__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Les nouvelles versions de Nonprofit Success Pack seront automatiquement installées.</help>
+        <label><!-- DEPRECATED-Package Update URL --></label>
+        <name>npe01__Package_Update_URL__c</name>
+    </fields>
+    <fields>
+        <help>Active les paiements automatiques créés pour les nouvelles opportunités/dons.</help>
+        <label><!-- Automatic Payment Creation --></label>
+        <name>npe01__Payments_Enabled__c</name>
+    </fields>
+    <fields>
+        <help>DÉPRÉCIÉ. Les nouvelles versions de Nonprofit Success Pack seront automatiquement installées.</help>
+        <label><!-- DEPRECATED-Update Check Interval --></label>
+        <name>npe01__Update_Check_Interval__c</name>
+    </fields>
+    <fields>
+        <help>Utilisation par le système uniquement : Espace de nom pour la fonctionnalité de package croisé.</help>
+        <label><!-- GEM Namespace --></label>
+        <name>npsp__Advancement_Namespace__c</name>
+    </fields>
+    <fields>
+        <help>Si coché, NPSP crée autom. un enreg. de membre de campagne quand vous créez une opp. ayant un contact principal et une source de campagne principale, ou quand vous mettez à jour cette opp. vers une étape Clôturée/Gagnée.</help>
+        <label><!-- Automatic Campaign Member Management --></label>
+        <name>npsp__Automatic_Campaign_Member_Management__c</name>
+    </fields>
+    <fields>
+        <help>Le statut par défaut que NPSP utilise sur les membres de campagne pour les opp. Ouvertes ou Clôturées/Perdues auxquelles sont associés un contact principal et une source de campagne principal. Si vide, NPSP utilise le premier statut « Sans réponse ».</help>
+        <label><!-- Campaign Member Non Responded Status --></label>
+        <name>npsp__Campaign_Member_Non_Responded_Status__c</name>
+    </fields>
+    <fields>
+        <help>Le statut par défaut que NPSP utilise sur les membres de campagne pour des opp.Clôturées/Gagnées ayant un contact principal et une source de campagne principale associée. Si vide, NPSP utilise le premier statut « A répondu ».</help>
+        <label><!-- Campaign Member Responded Status --></label>
+        <name>npsp__Campaign_Member_Responded_Status__c</name>
+    </fields>
+    <fields>
+        <help>Le rôle de contact par défaut assigné automatiquement au contact Opportunité principal de l’opportunité lorsque le compte opportunité n’est PAS un compte de foyer, un-à-un ou individuel.</help>
+        <label><!-- Contact Role for Organizational Opps --></label>
+        <name>npsp__Contact_Role_for_Organizational_Opps__c</name>
+    </fields>
+    <fields>
+        <help>Active plusieurs règles et automatisations sur les paiements et les opportunités pour garantir que les données comptables sont complètes et cohérentes.</help>
+        <label><!-- Enforce Accounting Data Consistency --></label>
+        <name>npsp__Enforce_Accounting_Data_Consistency__c</name>
+    </fields>
+    <fields>
+        <help>Si vous activez ce paramètre, NPSP crée automatiquement un enregistrement de rôle de contact avec un contact honoraire.</help>
+        <label><!-- Honoree Opportunity Contact Role --></label>
+        <name>npsp__Honoree_Opportunity_Contact_Role__c</name>
+    </fields>
+    <fields>
+        <help>Lorsque cette option est sélectionnée, la gestion des adresses est désactivée pour les comptes de foyer.</help>
+        <label><!-- Household Account Addresses Disabled --></label>
+        <name>npsp__Household_Account_Addresses_Disabled__c</name>
+    </fields>
+    <fields>
+        <help>Détermine le nombre maximal de paiements autorisés lors de la planification de paiements pour une opportunité.</help>
+        <label><!-- Max Payments --></label>
+        <name>npsp__Max_Payments__c</name>
+    </fields>
+    <fields>
+        <help>Si vous activez ce paramètre, NPSP crée automatiquement un enregistrement de rôle de contact pour les opportunités avec un contact destinataire de notification.</help>
+        <label><!-- Notification Recipient Opp Contact Role --></label>
+        <name>npsp__Notification_Recipient_Opp_Contact_Role__c</name>
+    </fields>
+    <fields>
+        <help>NPSP crée autom. des enreg. de paiement pour les opp. de tous types. Sélectionnez les types d’enreg. pour lesquels vous ne souhaitez pas de création autom. d’enreg. de paiements. Pour sélectionner plusieurs types d’enreg., cliquez sur Ctrl ou Commande.</help>
+        <label><!-- Excluded Opp Record Types --></label>
+        <name>npsp__Opp_RecTypes_Excluded_for_Payments__c</name>
+    </fields>
+    <fields>
+        <help>NPSP crée autom. des enreg.de paiement pour les opp. avec les valeurs de la liste Type. Sélectionnez les types pour lesquels vous ne souhaitez pas de création autom. d’enreg. de paiements. Pour sélect. plusieurs types, cliquez sur Ctrl ou Commande.</help>
+        <label><!-- Excluded Opp Types --></label>
+        <name>npsp__Opp_Types_Excluded_for_Payments__c</name>
+    </fields>
+    <fields>
+        <help>Lorsque cette option est sélectionnée, la gestion des adresses est activée pour les comptes non foyer, comme les comptes d’organisations.</help>
+        <label><!-- Organizational Account Addresses Enabled --></label>
+        <name>npsp__Organizational_Account_Addresses_Enabled__c</name>
+    </fields>
+    <fields>
+        <help>NPSP définit automatiquement une étape d’opportunité à cette valeur lorsque le montant de paiement reçu est égal au montant de l’opportunité. Si aucune étape n&apos;est sélectionnée, l’étape Opportunité ne changera pas une fois les paiements terminés.</help>
+        <label><!-- Opportunity Stage for When Fully Paid --></label>
+        <name>npsp__Payments_Auto_Close_Stage_Name__c</name>
+    </fields>
+    <fields>
+        <help>Si cette option est activée, les modifications d’un seul champ d’adresse d’un contact ou d’un compte mettent à jour l’adresse existante, au lieu de créer une nouvelle adresse.</help>
+        <label><!-- Simple Address Change Treated as Update --></label>
+        <name>npsp__Simple_Address_Change_Treated_as_Update__c</name>
+    </fields>
+    
+    
+</CustomObjectTranslation>

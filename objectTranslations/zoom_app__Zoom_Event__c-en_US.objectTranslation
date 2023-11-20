@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Duration (mins) --></label>
+        <name>zoom_app__Duration_mins__c</name>
+    </fields>
+    <fields>
+        <label><!-- Google Event Id --></label>
+        <name>zoom_app__Google_Event_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Host Id --></label>
+        <name>zoom_app__Host_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsExternal --></label>
+        <name>zoom_app__IsExternal__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsZoomMeeting --></label>
+        <name>zoom_app__IsZoomMeeting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Join Url --></label>
+        <name>zoom_app__Join_Url__c</name>
+    </fields>
+    <fields>
+        <label><!-- Meeting Topic --></label>
+        <name>zoom_app__Meeting_Topic__c</name>
+    </fields>
+    <fields>
+        <label><!-- Meeting Type --></label>
+        <name>zoom_app__Meeting_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant Count --></label>
+        <name>zoom_app__Participant_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participants --></label>
+        <name>zoom_app__Participants__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send Email --></label>
+        <name>zoom_app__Send_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Url 1 --></label>
+        <name>zoom_app__Start_Url_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Url 2 --></label>
+        <name>zoom_app__Start_Url_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Url 3 --></label>
+        <name>zoom_app__Start_Url_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- UUID --></label>
+        <name>zoom_app__UUID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Meeting Creation Status --></label>
+        <name>zoom_app__Zoom_Meeting_Creation_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Meeting End Time --></label>
+        <name>zoom_app__Zoom_Meeting_End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Meeting Id --></label>
+        <name>zoom_app__Zoom_Meeting_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Meeting Passcode --></label>
+        <name>zoom_app__Zoom_Meeting_Password__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Meeting Start Time --></label>
+        <name>zoom_app__Zoom_Meeting_Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zoom Status --></label>
+        <name>zoom_app__Zoom_Meeting_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

@@ -1,0 +1,271 @@
+<aura:component>
+  <!-- on component load, fetch picklist values dynamically from apex controller -->   
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--declare aura attributes-->
+    <aura:attribute name="objInfoForPicklistValues" type="Account" default="{sobjectType : 'Account'}" description="object information to fetch picklist values"/>
+    <aura:attribute name="statusPicklistOpts" type="string[]" description="store picklist options values"/> 
+    <aura:attribute name="productPicklistOpts" type="string[]" description="store picklist options values"/> 
+    <aura:attribute name="locationPicklistOpts" type="string[]" description="store picklist options values"/> 
+    <aura:attribute name="showSaveCancelBtn" type="boolean"/>
+    <aura:attribute name="showStatusDropdown" type="boolean"/>
+    <aura:attribute name="isSelectAll" type="boolean"/>
+   
+    
+    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+    <aura:attribute name="sNo" type="string" />
+     <aura:attribute name="allRecords" type="Object"/>
+    <aura:attribute name="singleRec" type="sobject" default="{'sobjectType' : 'ProductRequest',
+                                                               'Name' : '',
+                                                               'Status' : ''
+                                                               }"/>
+   
+    <aura:attribute name="statusEditMode" type="boolean" default="false" />
+    <aura:attribute name="locationEditMode" type="boolean" default="false" />
+    <aura:attribute name="showChildren" type="boolean" default="false" />
+    <aura:attribute name="showExpandedMode" type="boolean" default="false" />
+    
+    <!--Table Row Start -->
+	<tr aria-expanded="{!v.showExpandedMode}" aria-level="1" aria-posinset="2" aria-selected="false" aria-setsize="4" class="slds-hint-parent">   		
+    	<td class="slds-text-align_right" role="gridcell" style="width:3.25rem">
+            <div class="slds-checkbox">
+                <label class="slds-checkbox__label">
+                <ui:inputCheckbox text="{!v.singleRec.productReqId}"
+                                          value="{!v.singleRec.isChecked}"
+                                          change="{!c.checkboxSelect}"
+                                 		  aura:id="selectPR"/>
+                <span class="slds-checkbox_faux"></span>
+                <span class="slds-form-element__label slds-assistive-text">Select item</span>
+              </label>
+            </div>
+      	</td>
+        <td class="slds-cell-edit" role="gridcell">
+        	<span class="slds-grid slds-grid_align-spread">                                     
+                <span class="slds-truncate" title="Expand/Collapse">
+                    <aura:if isTrue="{!v.showExpandedMode}">
+                        <aura:if isTrue="{!v.showChildren}">
+                            <div style="display:inline-block;" onclick="{!c.showLineItems}">
+                                <lightning:icon iconName="utility:dash" size="xx-small" alternativeText="Show Line Items"/>
+                            </div>
+                            <aura:set attribute="else">
+                                <div style="display:inline-block;" onclick="{!c.showLineItems}">
+                                    <lightning:icon iconName="utility:add" size="xx-small" alternativeText="Show Line Items"/>
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </aura:if>
+                </span>
+           	</span>
+        </td>
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.destinationLocationName}">{!v.singleRec.destinationLocationName}</span>
+            </span>                                 
+        </td>       
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.pickupBranch}">{!v.singleRec.pickupBranch}</span>
+            </span>                                 
+        </td>
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.createdDate}">{!v.singleRec.createdDate}</span>
+            </span>                                 
+        </td>
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.needbyDate}">{!v.singleRec.needbyDate}</span>
+            </span>                                 
+        </td>
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.poNumber}">{!v.singleRec.poNumber}</span>
+            </span>                                 
+        </td>
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.productRequestNumber}">{!v.singleRec.productRequestNumber}</span>
+            </span>                                 
+        </td>
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.shipToAddress}">{!v.singleRec.shipToAddress}</span>
+            </span>                                 
+        </td>
+        
+        <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.shipmentType}">{!v.singleRec.shipmentType}</span>
+            </span>                                 
+        </td>        
+        <td ondblclick="{!c.inlineEditLocation}" class="slds-cell-edit">
+            <span class="slds-grid slds-grid_align-spread">
+                <!-- Show input and output section based on boolean flag --> 
+                <aura:if isTrue="{!v.locationEditMode == false}">
+                    <span class="slds-truncate" title="Source Location">{!v.singleRec.sourceLocationName}</span>
+                    <button onclick="{!c.inlineEditLocation}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Location">
+                        <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                    </button>
+                    
+                    <!-- Inline Edit Section in else case-->  
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit popoverWidth" role="dialog" style="position: absolute; top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <label class="slds-form-element__label"></label>
+                                        <ui:inputSelect aura:id="location"
+                                                        class="slds-select inputFieldWidth"
+                                                        blur="{!c.closeLocationBox}"
+                                                        change="{!c.onLocationChange}"
+                                                        value="{!v.singleRec.sourceLocationId}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td> 
+       <td class="slds-cell-edit" role="gridcell">
+            <span class="slds-grid slds-grid_align-spread">
+                <span class="slds-truncate" title="{!v.singleRec.status}">{!v.singleRec.status}</span>
+            </span>                                 
+        </td>   
+        <!-- <td ondblclick="{!c.inlineEditStatus}" class="slds-cell-edit">
+            <span class="slds-grid slds-grid_align-spread">
+               
+                <aura:if isTrue="{!v.statusEditMode == false}">
+                    <span class="slds-truncate" title="Status">{!v.singleRec.status}</span>
+                    <button onclick="{!c.inlineEditStatus}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Status">
+                        <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                    </button>
+                    
+                     
+                    <aura:set attribute="else">
+                        <section  tabindex="0" class="slds-popover slds-popover_edit popoverWidth" role="dialog" style="position: absolute; top: 0px">
+                            <div class="slds-popover__body">
+                                <div class="slds-form-element slds-grid slds-wrap">
+                                    <div class="slds-form-element__control slds-grow">
+                                        <label class="slds-form-element__label"></label>
+                                        <ui:inputSelect aura:id="status"
+                                                        class="slds-select inputFieldWidth"
+                                                        blur="{!c.closeStatusBox}"
+                                                        change="{!c.onStatusChange}"
+                                                        value="{!v.singleRec.status}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <span id="form-end" tabindex="0"></span>
+                        </section>  
+                    </aura:set>  
+                </aura:if> 
+            </span>
+        </td> -->
+    </tr>
+   	<aura:renderIf isTrue="{!v.showChildren == true}">
+        <tr aria-level="2" aria-posinset="1" aria-selected="false" aria-setsize="2" class="slds-hint-parent font-weight-bold slds-text-title_caps" >     					
+            <td role="gridcell"></td>
+            <td role="gridcell"></td>
+            <td data-label="Product Name" role="gridcell" >
+                <div class="slds-truncate lineItemHeaderFont" title="Product Name">Product Name</div>
+            </td>
+            <td data-label="Product Code" role="gridcell">
+                <div class="slds-truncate lineItemHeaderFont" title="Product Code">Product Code</div>
+            </td>
+            <td data-label="Product Cost" role="gridcell">
+                <div class="slds-truncate lineItemHeaderFont" title="Product Cost">Product Cost</div>
+            </td>
+            <td data-label="Product Vendor" role="gridcell">
+                <div class="slds-truncate lineItemHeaderFont" title="Product Vendor">Product Vendor</div>
+            </td>
+            <td data-label="Product Quantity" role="gridcell">
+                <div class="slds-truncate lineItemHeaderFont" title="Quantity Requested">Quantity Requested</div>
+            </td>
+            <td role="gridcell"></td><td role="gridcell"></td>
+            <td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td>
+      	</tr>
+        
+        <!-- Iterate over line items -->
+      	<aura:iteration var="lineItem" items="{!v.singleRec.lineItems}" indexVar="indexNo">
+            <tr aria-level="2" aria-posinset="1" aria-selected="false" aria-setsize="2" class="slds-hint-parent">     					
+                <td role="gridcell"></td>
+                <td role="gridcell"></td> 
+                <td ondblclick="{!c.inlineEditProduct}" class="{! v.showErrorClass == true ? 'slds-cell-edit slds-has-error' : 'slds-cell-edit'}">
+                <span class="slds-grid slds-grid_align-spread">
+                    <!-- Show input and output section based on boolean flag --> 
+                    <aura:if isTrue="{!lineItem.productEditMode == false}">
+                        <span class="slds-truncate" title="{!lineItem.productName}">{!lineItem.productName}</span>
+                        <button data-selected-Index="{!indexNo}" onclick="{!c.inlineEditProduct}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Product">
+                            <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                        </button>
+                        
+                        <!-- Inline Edit Section in else case-->  
+                        <aura:set attribute="else">
+                            <section  tabindex="0" class="slds-popover slds-popover_edit" role="dialog" style="position: absolute; top: 0px">
+                                <div class="slds-popover__body">
+                                    <div class="slds-form-element slds-grid slds-wrap">
+                                        <div class="slds-form-element__control slds-grow">
+                                            <label class="slds-form-element__label"></label>
+                                            <ui:inputSelect aura:id="product"
+                                                            class="slds-select inputFieldWidth"
+                                                            blur="{!c.closeProductBox}"
+                                                            change="{!c.onProductChange}"
+                                                            value="{!lineItem.productId}"
+                                                            required="true"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span id="form-end" tabindex="0"></span>
+                            </section>  
+                        </aura:set>  
+                    </aura:if> 
+                </span>
+                </td> 
+           
+                <td data-label="Product Code" role="gridcell">
+                    <div class="slds-truncate" title="{!lineItem.productCode}">{!lineItem.productCode}</div>
+                </td>
+                <td data-label="Product Cost" role="gridcell">
+                    <div class="slds-truncate" title="{!lineItem.productCost}">{!lineItem.productCost}</div>
+                </td> 
+                <td data-label="Product Vendor" role="gridcell">
+                    <div class="slds-truncate" title="{!lineItem.productVendor}">{!lineItem.productVendor}</div>
+                </td>                       
+                <td data-label="Quantity" role="gridcell" ondblclick="{!c.inlineEditQuantity}" class="{! v.showErrorClass == true ? 'slds-cell-edit slds-has-error' : 'slds-cell-edit'}">
+                    <span class="slds-grid slds-grid_align-spread">
+                         
+                        <aura:if isTrue="{!lineItem.quantityEditMode == false}">
+                            <span class="slds-truncate" title="{!lineItem.quantityRequested}">{!lineItem.quantityRequested}</span>
+                            <button data-selected-Index="{!indexNo}" onclick="{!c.inlineEditQuantity}" class="slds-button slds-button_icon slds-cell-edit__button slds-m-left_x-small" tabindex="0" title="Edit Quantity">
+                              <lightning:icon iconName="utility:edit" size="xx-small" alternativeText="edit"/>
+                            </button>
+                         
+                            <aura:set attribute="else">
+                                <section  tabindex="0" class="slds-popover slds-popover_edit popoverWidth" role="dialog" style="position: absolute; top: 0px">
+                                    <div class="slds-popover__body">
+                                        <div class="slds-form-element slds-grid slds-wrap">
+                                            <div class="slds-form-element__control slds-grow">
+                                                <ui:inputText class="slds-input inputFieldWidth"                                                      
+                                                              labelClass="slds-form-element__label slds-form-element__label_edit slds-no-flex"
+                                                              aura:id="inputId"
+                                                              blur="{!c.closeQuantityBox}"
+                                                              change="{!c.onQuantityChange}"
+                                                              required="true"                                                      
+                                                              value="{!lineItem.quantityRequested}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span id="form-end" tabindex="0"></span>
+                                </section>  
+                            </aura:set>  
+                        </aura:if> 
+                    </span>
+                </td>  
+                <td role="gridcell"></td><td role="gridcell"></td>
+                <td role="gridcell"></td><td role="gridcell"></td><td role="gridcell"></td>
+            </tr>	
+    	</aura:iteration>
+    </aura:renderIf>	      
+</aura:component>

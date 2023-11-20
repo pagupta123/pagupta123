@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="You have been assigned to Class" recipientType="User" relatedToType="redwing__Learning_Assignment__c" language="EN">
+<messaging:htmlEmailBody >
+<c:ILTNotification learningAssignment="{!relatedTo}" notificationName="LearnTrac_Class_Assignment" />
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
