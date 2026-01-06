@@ -200,10 +200,6 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
-        <fullName>IsVisibleInSelfService</fullName>
-        <trackHistory>false</trackHistory>
-    </fields>
-    <fields>
         <fullName>Location</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -214,6 +210,11 @@
     </fields>
     <fields>
         <fullName>Phone</fullName>
+    </fields>
+    <fields>
+        <fullName>ServiceAppointmentId</fullName>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ShowAs</fullName>
@@ -334,33 +335,4 @@
     </listViews>
     <searchLayouts/>
     <sharingModel>Private</sharingModel>
-    <webLinks>
-        <fullName>zoom_app__Make_it_Zoom_Meeting</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>Make it Zoom Meeting</masterLabel>
-        <openType>sidebar</openType>
-        <page>zoom_app__ZoomMeetingCreation</page>
-        <protected>false</protected>
-    </webLinks>
-    <webLinks>
-        <fullName>zoom_app__Start_Zoom_Meeting</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <hasMenubar>false</hasMenubar>
-        <hasScrollbars>true</hasScrollbars>
-        <hasToolbar>false</hasToolbar>
-        <height>600</height>
-        <isResizable>true</isResizable>
-        <linkType>page</linkType>
-        <masterLabel>Start Zoom Meeting</masterLabel>
-        <openType>newWindow</openType>
-        <page>zoom_app__ZoomMeetingStart</page>
-        <position>none</position>
-        <protected>false</protected>
-        <showsLocation>false</showsLocation>
-        <showsStatus>false</showsStatus>
-    </webLinks>
 </CustomObject>

@@ -157,7 +157,7 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <externalSharingModel>FullAccess</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>ActualCost</fullName>
     </fields>
@@ -169,10 +169,6 @@
     </fields>
     <fields>
         <fullName>BudgetedCost</fullName>
-    </fields>
-    <fields>
-        <fullName>CampaignImageId</fullName>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>CampaignMemberRecordTypeId</fullName>
@@ -272,18 +268,6 @@
         <fullName>Type</fullName>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>zoom_app__Zoom_Webinar__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Zoom Webinar</label>
-        <referenceTo>zoom_app__Zoom_Webinar__c</referenceTo>
-        <relationshipLabel>Campaigns</relationshipLabel>
-        <relationshipName>Campaigns</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>
     <listViews>
         <fullName>AllActiveCampaigns</fullName>
         <filterScope>Everything</filterScope>
@@ -339,18 +323,5 @@
         <showsStatus>false</showsStatus>
         <url>/00O?rt=117&amp;break0=CAN&amp;scope=1&amp;scopeid_lkid={!Campaign.Id}&amp;scopeid={!Campaign_Name}&amp;c=CAN&amp;c=MR&amp;c=PCS&amp;c=CFN&amp;c=RN&amp;c=ON&amp;c=OA&amp;c=OS&amp;c=OCD&amp;c=AN&amp;s=OA&amp;duel0=CAN%2CMR%2CCFN%2CRN%2CAN%2CON%2CPCS%2COS%2COCD%2COA&amp;details=yes&amp;format=t</url>
         <width>500</width>
-    </webLinks>
-    <webLinks>
-        <fullName>npo02__Household_Mailing_List</fullName>
-        <availability>online</availability>
-        <description>Deduplicated mailing list of Households</description>
-        <displayType>button</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
-        <masterLabel>Household Mailing List</masterLabel>
-        <openType>sidebar</openType>
-        <protected>false</protected>
-        <url>/apex/npsp__HH_CampaignDedupeBTN?id={!Campaign.Id}</url>
     </webLinks>
 </CustomObject>

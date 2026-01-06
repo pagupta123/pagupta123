@@ -4,6 +4,6 @@
     <enableAccountInsightsInMobile>false</enableAccountInsightsInMobile>
     <enableAccountTeams>false</enableAccountTeams>
     <enableContactHistoryTracking>false</enableContactHistoryTracking>
-    <enableRelateContactToMultipleAccounts>true</enableRelateContactToMultipleAccounts>
+    <enableRelateContactToMultipleAccounts>false</enableRelateContactToMultipleAccounts>
     <showViewHierarchyLink>true</showViewHierarchyLink>
 </AccountSettings>

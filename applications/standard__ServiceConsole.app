@@ -163,6 +163,7 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
     <isServiceCloudConsole>true</isServiceCloudConsole>
     <preferences>
         <enableCustomizeMyTabs>false</enableCustomizeMyTabs>
@@ -180,15 +181,7 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
-    <tabs>Camping_Item__c</tabs>
-    <tabs>Energy_Audit__c</tabs>
     <workspaceConfig>
-        <mappings>
-            <tab>Camping_Item__c</tab>
-        </mappings>
-        <mappings>
-            <tab>Energy_Audit__c</tab>
-        </mappings>
         <mappings>
             <tab>standard-Account</tab>
         </mappings>

@@ -129,11 +129,6 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <fieldSets>
-        <fullName>npsp__ContactMergeDRS</fullName>
-        <description>Contact Merge page</description>
-        <label>ContactMergeDRS</label>
-    </fieldSets>
     <fields>
         <fullName>DuplicateRuleId</fullName>
         <type>Lookup</type>

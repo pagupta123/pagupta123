@@ -6,7 +6,7 @@
     <enableAuraSecureEvalPref>true</enableAuraSecureEvalPref>
     <enableCoepHeader>false</enableCoepHeader>
     <enableCoopHeader>false</enableCoopHeader>
-    <enableCrossOrgRedirects>true</enableCrossOrgRedirects>
+    <enableCrossOrgRedirects>false</enableCrossOrgRedirects>
     <enablePermissionsPolicy>false</enablePermissionsPolicy>
     <enableRequireHttpsConnection>true</enableRequireHttpsConnection>
     <networkAccess/>
@@ -26,6 +26,7 @@
     <sessionSettings>
         <allowUserAuthenticationByCertificate>false</allowUserAuthenticationByCertificate>
         <allowUserCertBasedAuthenticationWithOcspValidation>false</allowUserCertBasedAuthenticationWithOcspValidation>
+        <auraBoxcarReductionPref>false</auraBoxcarReductionPref>
         <canConfirmEmailChangeInLightningCommunities>true</canConfirmEmailChangeInLightningCommunities>
         <canConfirmIdentityBySmsOnly>true</canConfirmIdentityBySmsOnly>
         <disableTimeoutWarning>false</disableTimeoutWarning>
@@ -49,7 +50,6 @@
         <enablePostForSessions>false</enablePostForSessions>
         <enableSMSIdentity>true</enableSMSIdentity>
         <enableU2F>false</enableU2F>
-        <enableXssProtection>false</enableXssProtection>
         <enforceIpRangesEveryRequest>false</enforceIpRangesEveryRequest>
         <enforceUserDeviceRevoked>false</enforceUserDeviceRevoked>
         <forceLogoutOnSessionTimeout>true</forceLogoutOnSessionTimeout>
@@ -62,18 +62,21 @@
         <identityConfirmationOnTwoFactorRegistrationEnabled>true</identityConfirmationOnTwoFactorRegistrationEnabled>
         <lockSessionsToDomain>true</lockSessionsToDomain>
         <lockSessionsToIp>false</lockSessionsToIp>
-        <lockerServiceCSP>false</lockerServiceCSP>
-        <lockerServiceNext>false</lockerServiceNext>
+        <lockerServiceCSP>true</lockerServiceCSP>
+        <lockerServiceNext>true</lockerServiceNext>
         <lockerServiceNextControl>false</lockerServiceNextControl>
+        <lockerTrustedMode>false</lockerTrustedMode>
         <redirectBlockModeEnabled>false</redirectBlockModeEnabled>
-        <redirectionWarning>false</redirectionWarning>
+        <redirectionWarning>true</redirectionWarning>
         <referrerPolicy>true</referrerPolicy>
-        <referrerPolicyDirective>origin-when-cross-origin</referrerPolicyDirective>
+        <referrerPolicyDirective>strict-origin-when-cross-origin</referrerPolicyDirective>
         <requireHttpOnly>false</requireHttpOnly>
         <sendCspForUncommonClients>false</sendCspForUncommonClients>
         <sessionTimeout>TwoHours</sessionTimeout>
         <sidToken3rdPartyAuraApp>false</sidToken3rdPartyAuraApp>
         <skipSFAWhenMFADirectUILogin>false</skipSFAWhenMFADirectUILogin>
+        <terminateUserSessionsWhenAdminResetsPassword>false</terminateUserSessionsWhenAdminResetsPassword>
+        <untrustedRedirect>AlwaysAllowed</untrustedRedirect>
         <useEAPIRateLimitForConnectAPI>false</useEAPIRateLimitForConnectAPI>
         <useLocalStorageForLogoutUrl>false</useLocalStorageForLogoutUrl>
     </sessionSettings>

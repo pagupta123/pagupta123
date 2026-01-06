@@ -36,14 +36,4 @@
         <default>false</default>
         <label>Other</label>
     </standardValue>
-    <standardValue>
-        <fullName>Customer</fullName>
-        <default>false</default>
-        <label>Customer</label>
-    </standardValue>
-    <standardValue>
-        <fullName>Pending</fullName>
-        <default>false</default>
-        <label>Pending</label>
-    </standardValue>
 </StandardValueSet>

@@ -7,9 +7,12 @@
     <enableOpportunityFieldHistoryTracking>false</enableOpportunityFieldHistoryTracking>
     <enableOpportunityInsightsInMobile>false</enableOpportunityInsightsInMobile>
     <enableOpportunityTeam>false</enableOpportunityTeam>
+    <enableServiceCaseInsights>false</enableServiceCaseInsights>
     <enableUpdateReminders>true</enableUpdateReminders>
     <oppAmountDealMotionEnabled>true</oppAmountDealMotionEnabled>
     <oppCloseDateDealMotionEnabled>true</oppCloseDateDealMotionEnabled>
     <promptToAddProducts>false</promptToAddProducts>
     <pushCountEnabled>true</pushCountEnabled>
+    <simpleOppCreateFromContact>false</simpleOppCreateFromContact>
+    <simpleOppCreateFromEvent>false</simpleOppCreateFromEvent>
 </OpportunitySettings>

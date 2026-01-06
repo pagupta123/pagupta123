@@ -134,7 +134,14 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>ReferencePrice</fullName>
+    </fields>
+    <fields>
         <fullName>ServiceDate</fullName>
+        <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>SubscriptionTerm</fullName>
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
